@@ -8,7 +8,6 @@ pip install flask
 
 npx create-react-app react-frontend
 
-
 ----- go to react
 npm run eject 
 

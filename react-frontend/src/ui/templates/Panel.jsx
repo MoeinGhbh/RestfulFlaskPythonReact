@@ -4,7 +4,7 @@ import "./css/Panel.css";
 //import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 //import ItemCard from "../components/ItemsCard";
-//import data from "../../Data.json";
+import data from "../../Data.json";
 import ZoneCardEdit from "../components/Zones/ZoneCardEdit";
 
 class Panel extends Component {
@@ -15,7 +15,7 @@ class Panel extends Component {
     this.updateJsonItems = this.updateJsonItems.bind(this);
     var ZoneSelected,
       ItemSelected = "";
-    // this.state = { data };
+     this.state = { data };
     this.handler = this.handler.bind(this);
     var toooo = 0;
   }
@@ -98,8 +98,8 @@ class Panel extends Component {
   }
 
   render() {
-    const { data, handler } = this.props;
-    console.log(data)
+    //const { data, handler } = this.props;
+    //console.log(data)
     return (
       <div className="divMain">
         <table style={{ border: "1px solid black" }}>
@@ -163,7 +163,7 @@ class Panel extends Component {
         <div id="Zones">
           {/* <h2>{data.navigation.content}</h2> */}
 
-          {data.map(Zone => {
+          {data.navigation.map(Zone => {
             return (
               <div id="Zone">
                 <ZoneCardEdit

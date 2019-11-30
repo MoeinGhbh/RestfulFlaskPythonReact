@@ -1,4 +1,5 @@
 import React, {Component, useEffect} from "react";
+import axios from "axios";
 //import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import Container from "react-bootstrap/Container";
@@ -21,9 +22,14 @@ class Home extends Component {
     this.handler = this.handler.bind(this);
   }
    componentDidMount() {
-        fetch('http://127.0.0.1:5000/api/v1.0/allHome')
-            .then(response => response.json())
-            .then(responseData => this.setState({data: responseData.data}))
+      axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
+            .then(res =>{
+                this.setState({data: res.data.data})
+            })
+       setInterval(()=> axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
+            .then(res =>{
+                this.setState({data: res.data.data})
+            }),20000)
     }
   handler(data) {
     this.setState(data);

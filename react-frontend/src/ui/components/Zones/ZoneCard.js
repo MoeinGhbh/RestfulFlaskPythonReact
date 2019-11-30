@@ -11,12 +11,11 @@ import Switch from '@material-ui/core/Switch';
 class ZoneCard extends Component {
     constructor(props){
         super(props);
-        this.updateState=this.updateState.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-        updateState(aaa){
-            // console.log(aaa)
-            // alert(aaa)
+        updateState=(e)=>{
+        // this.state()
+
         }
 
         handleChange(aaa){
@@ -43,26 +42,38 @@ class ZoneCard extends Component {
         this.setState({ isUserAdmin: checked })
     }} />
     */}
+        {
+            console.log(items);}
+        // {items.map(item=>{
+        //     item.Lamp.map(lamp=>{
+        //         return(<div>
+        //             <label> {lamp} </label>
+        //             <BootstrapSwitchButton  checked={Boolean(items[j].Lamp[i])} onstyle="primary" offstyle="info"
+        //   onClick={this.updateState}
+        //   />
+        //         </div>)
+        //     })
+        // })}
 
 
     for (j in  items)
       for (i in items[j].Lamp)
       {
           rwLMP.push(<label> {i} </label> );
-          let tmp;
-          if(items[j].Lamp[i]=="true")
-                tmp=true
-          else
-              tmp=false
-          rwLMP.push(<BootstrapSwitchButton  checked={tmp} onstyle="primary" offstyle="info"
-
-          onClick={this.updateState(true)}
+          // let tmp;
+          // if(items[j].Lamp[i]=="true")
+          //       tmp=true
+          // else
+          //     tmp=false
+          rwLMP.push(
+              <BootstrapSwitchButton  checked={Boolean(items[j].Lamp[i])} onstyle="primary" offstyle="info"
+          onClick={this.updateState}
           />)
 
           rwLMP.push(
            <Switch
-        checked={tmp}
-        onChange={this.updateState(true)}
+        checked={Boolean(items[j].Lamp[i])}
+        onChange={this.updateState}
         value="true"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
@@ -116,8 +127,8 @@ class ZoneCard extends Component {
             <Col>{rwACD}</Col>
             <Col>{rwSKT}</Col>
               <Col><BootstrapSwitchButton  checked={true} onstyle="primary" offstyle="info"
-          onChange={this.updateState(true)}
-                onclick={this.updateState(true)}
+          onChange={this.updateState}
+                onclick={this.updateState}
               /></Col>
           </Row>
         </Container>

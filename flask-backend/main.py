@@ -1,5 +1,6 @@
 import flask
 from flask import jsonify, request, Response
+from flask_cors import CORS
 import tinydb
 from tinydb import TinyDB, Query
 import json
@@ -41,7 +42,7 @@ table = data.table("navigator")
 table = table.all()
 app = flask.Flask("__main__")
 
-
+CORS(app)
 @app.route("/api/v1.0/allHome", methods=["GET", "POST"])
 def my_index():
     return jsonify({"data": table})

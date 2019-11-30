@@ -1,0 +1,55 @@
+{
+   "navigation":[
+      {
+         "key":0,
+         "name":"TV Room",
+         "items":[
+            {
+               "LAMP1":0,
+               "LAMP2":1
+            },
+            {
+               "a/c":1
+            },
+            {
+               "socket":1
+            }
+         ]
+      },
+      {
+         "key":1,
+         "name":"kitchen",
+         "items":[
+            {
+               "LAMP1":1,
+               "LAMP2":0
+            },
+            {
+               "a/c":0
+            },
+            {
+               "socket":0
+            }
+         ]
+      },
+      {
+         "key":2,
+         "name":"room",
+         "items":[
+            {
+               "LAMP1":0,
+               "LAMP2":1
+            },
+            {
+               "a/c":1
+            },
+            {
+               "socket":1
+            }
+         ]
+      }
+   ],
+   "_default":{
+
+   }
+}

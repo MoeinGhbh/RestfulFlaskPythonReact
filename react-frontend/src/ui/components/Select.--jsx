@@ -1,0 +1,24 @@
+import React, { Component } from "react";
+import { MDBSelect, MDBSelectInput, MDBSelectOptions, MDBSelectOption } from "mdbreact";
+
+class SelectPage extends Component {
+  render() {
+    return (
+      <div>
+        <MDBSelect label="Example label">
+          <MDBSelectInput selected="Choose your country" />
+          <MDBSelectOptions>
+            <MDBSelectOption disabled>Choose your country</MDBSelectOption>
+            <MDBSelectOption value="1">USA</MDBSelectOption>
+            <MDBSelectOption value="2">Germany</MDBSelectOption>
+            <MDBSelectOption value="3">France</MDBSelectOption>
+            <MDBSelectOption value="4">Poland</MDBSelectOption>
+            <MDBSelectOption value="5">Japan</MDBSelectOption>
+          </MDBSelectOptions>
+        </MDBSelect>
+      </div>
+    );
+  }
+}
+
+export default SelectPage;

@@ -1,0 +1,25 @@
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+//import ZoneElements from './ZoneElemans';
+
+
+class ZoneDevices extends Component {
+  render() {
+    let { Lamp } = this.props;
+    //let { Curtains } = this.props;
+    console.log(Lamp);
+    //console.log(Curtains);
+    return (
+      <div className="Card">
+          {
+           
+              // Lamp.map(lmp =>{
+              //   return <ZoneElements Elemans={lmp} />
+              // })
+          }
+          
+      </div>
+    );
+  }
+}
+export default ZoneDevices;

@@ -12,8 +12,8 @@ export default class ZoneSection extends Component {
       <div id="Zones">
             {/*{console.log("data",data)}*/}
 
-           {data.map(Zone => {
-             return <div id="Zone"> <h2> {Zone.name} </h2>   <ZoneCard content={Zone.name} items={Zone.items}  className="card" /> </div>;
+           {data.map((Zone,index) => {
+             return <div id="Zone"> <h2> {Zone.name} </h2>   <ZoneCard zoneIndex={index} name={Zone.name} items={Zone.items} handler={handler}  className="card" /> </div>;
           })}
       </div>
     );

@@ -3,7 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Restful-flask-Python-React" vcs="" />
-    <mapping directory="$PROJECT_DIR$/RestfulFlaskPythonReact" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/RestfulFlaskPythonReact" vcs="" />
     <mapping directory="$PROJECT_DIR$/flask-backend" vcs="" />
     <mapping directory="$PROJECT_DIR$/react-frontend" vcs="" />
   </component>

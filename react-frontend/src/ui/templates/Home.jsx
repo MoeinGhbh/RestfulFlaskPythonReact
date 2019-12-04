@@ -31,8 +31,20 @@ class Home extends Component {
                 this.setState({data: res.data.data})
             }),20000)
     }
-  handler(data) {
-    this.setState(data);
+  handler=(data,zoneIndex)=> {
+      console.log("data " ,data,zoneIndex);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
+      //  "1": {"id": 1, "name": "TVRoom",items:[] },
+
+      this.state.data[parseInt(zoneIndex)].items=data;
+      this.setState({...this.state});
+
+      axios.post("url",{}).then(res=>{
+          if(res.status==200){
+              this.state.data[parseInt(zoneIndex)].items=data;
+              this.setState({...this.state});
+          }
+      })
+
   }
   render() {
     const { data, handler } = this.props;
@@ -40,7 +52,7 @@ class Home extends Component {
       <div class="container-fluid">
         <h1>BMS</h1>
         <p> Building Management System is way to make smart homes</p>
-        <Navigator data={this.state.data} handler={this.handler} name={"asdfas"} />
+        <Navigator data={this.state.data} handler={this.handler}  />
         <br />
         {/* <div className="icone" id="icone">
           <img src={img} alt="" className="img" />

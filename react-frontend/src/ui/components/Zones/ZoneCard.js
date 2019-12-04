@@ -12,9 +12,13 @@ class ZoneCard extends Component {
         super(props);
     }
         updateState=(e)=>{
-            const{ items } = this.props;
-            Object.assign(items, { status: "off" });
-            console.log(items)
+            const{ items,zoneIndex } = this.props;
+            let itemsTemp=items;
+
+            itemsTemp[parseInt(e.target.name)].status=e.target.checked;
+            // Object.assign(items, { status:  e.target.checked });
+            this.props.handler(itemsTemp,zoneIndex)
+            // console.log(itemsTemp)
         }
 
         // const[state, setState] = React.useState({
@@ -29,36 +33,24 @@ class ZoneCard extends Component {
     render() {
     let { name } = this.props;
     let { items } = this.props;
-    console.log(items)
+    console.log(items,"items")
 
     return (
       <div className="Card">
         <h3>{name}</h3>
         {/* <img src={} height="42" width="42" /> */}
 
-         {items.map(item=>{
-
-                return(<div>
+         {items.map((item,index)=>{
+             console.log("item.status ",Boolean(item.status.toString()));
+             return(<div>
                     <label> {item.group}  {item.name} {item.status}  {Boolean('true')} {Boolean('True')} </label>
 
                     <Switch
-                        checked={item.status}
+                        name={index}
+                        checked={item.status.toString()=="true"}
                         onChange={this.updateState}
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        // inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
-
-                     <Switch
-                        checked={true}
-                        onChange={this.updateState}
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />
-
-                     <Switch
-                        checked={false}
-                        onChange={this.updateState}
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />
-
                 </div>)
             })
         }

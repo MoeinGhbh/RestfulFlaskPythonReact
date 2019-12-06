@@ -39,5 +39,10 @@ npm run build
 
 go to flask :  python main.py
 
+pip install jwt
+pip install pyjwt
+pip install tinydb
+pip install flask_sqlalchemy
+
 
 

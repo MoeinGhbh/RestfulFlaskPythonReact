@@ -7,29 +7,26 @@ import axios from "axios";
 class login extends Component {
   constructor(props) {
     super(props);
-    this.state = {login: [],name:'',pass:''}
-    this.routChange = this.routChange.bind(this);
+    this.state = {loginToken:'',name:'',pass:''}
     this.routChangeBack = this.routChangeBack.bind(this);
-    let userAccess=false;
-
-    this.namehandleChange = this.namehandleChange.bind(this);
-    this.passhandleChange = this.passhandleChange.bind(this);
-
   }
 
-  namehandleChange(event) {
-    this.setState({name: event.target.value});
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  routChange = event => {
+    const gotUser = this.state["name"]
+    const gotPass = this.state["pass"]
+
+    axios.post("http://127.0.0.1:5000/api/login",{"username":gotUser,"password":gotPass})
+        .then(res =>{
+          this.setState({loginToken: res.data})
+        })
     console.log(this.state)
-    localStorage.setItem('LSusername', this.state["username"]);
-  }
-
-  passhandleChange(event) {
-    this.setState({pass: event.target.value});
-    console.log(this.state)
-    localStorage.setItem('LSpassword', this.state["password"]);
-  }
-
-  routChange() {
+    localStorage.setItem("LStoken", this.loginToken);
     const ttt = localStorage.getItem('LStoken')
     console.log(ttt)
     //this.props.history.push("/Home");
@@ -38,22 +35,7 @@ class login extends Component {
     this.props.history.push("/");
   }
 
-  componentDidMount() {
-    axios.post("http://127.0.0.1:5000/api/login",{"username":"admin","password":"123"})
-        .then(res =>{
-          this.setState({userAccess: res.data})
-        })
-    console.log(login)
-    localStorage.setItem('LStoken', this.userAccess);
-
-
-
-  }
-
   render() {
-    const { login } = this.props;
-
-    //console.log(login)
     return (
       <div className="divlog">
         <table className="tbllog">
@@ -68,7 +50,7 @@ class login extends Component {
               <label>نام کاربری</label>
             </td>
             <td>
-              <input type="text" value={this.state.name} onChange={this.namehandleChange} />
+              <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
             </td>
           </tr>
           <tr>
@@ -76,7 +58,7 @@ class login extends Component {
               <label>رمز عبور</label>
             </td>
             <td>
-              <input type="text" value={this.state.pass} onChange={this.passhandleChange} />
+              <input type="text" name="pass" value={this.state.pass} onChange={this.handleChange} />
             </td>
           </tr>
 

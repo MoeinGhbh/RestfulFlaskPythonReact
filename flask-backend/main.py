@@ -20,9 +20,10 @@ CORS(app)
 app.config["SECRET_KEY"] = 'meow'
 
 
-@app.route("/api/login", methods=["POST"])
+@app.route("/api/login", methods=["GET", "POST"])
 def get_token():
     request_data = request.get_json()
+    print(request_data)
     username = str(request_data["username"])
     password = str(request_data["password"])
 

@@ -1,5 +1,6 @@
 import React, {Component, useEffect} from "react";
 import axios from "axios";
+//import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import Container from "react-bootstrap/Container";
 //import Row from "react-bootstrap/Row";
@@ -8,6 +9,8 @@ import Navigator from "../components/Navigator/Navigation";
 import img from "../img/BMS.jpg";
 import "./css/Home.css";
 import ZoneSection from "../components/Zones/ZoneSetion";
+//import data from "../../Data.json";
+//import data2 from "../components/API";
 //import data2 from "../components/dataAcessLayer.jsx";
 
 
@@ -17,6 +20,9 @@ class Home extends Component {
     this.state = {
             data: []}
     this.handler = this.handler.bind(this);
+    const x = localStorage.getItem("role")
+      console.log(localStorage.getItem("LStoken"))
+       console.log(x)
   }
    componentDidMount() {
       axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
@@ -26,8 +32,22 @@ class Home extends Component {
        setInterval(()=> axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
             .then(res =>{
                 this.setState({data: res.data.data})
-            }),2000)
+            }),20000)
+
+
+      //  console.log("sdfgsdfgsd"+ localStorage.getItem("LStoken"))
+      // axios.post('http://127.0.0.1:5000/api/v1.0/allHome', {"token":localStorage.getItem("LStoken")})
+      //       .then(res =>{
+      //           this.setState({data: res.data.data})
+      //       })
+      //  setInterval(()=> axios.post('http://127.0.0.1:5000/api/v1.0/allHome', {"token":localStorage.getItem("LStoken")})
+      //       .then(res =>{
+      //           this.setState({data: res.data.data})
+      //       }),2000)
+
     }
+
+
   handler=(data,zoneIndex)=> {
       console.log("data " ,data,zoneIndex);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
       //  "1": {"id": 1, "name": "TVRoom",items:[] },
@@ -43,6 +63,10 @@ class Home extends Component {
       })
 
   }
+
+
+
+
   render() {
     const { data, handler } = this.props;
     return (

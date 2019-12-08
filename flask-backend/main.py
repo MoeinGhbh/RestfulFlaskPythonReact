@@ -26,9 +26,7 @@ def get_token():
     print(request_data)
     username = str(request_data["username"])
     password = str(request_data["password"])
-
     match = User.username_password_match(username, password)
-
     if match:
         expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=100)
         token: object = jwt.encode({"exp": expiration_date}, app.config["SECRET_KEY"], algorithm="HS256")
@@ -56,6 +54,17 @@ def my_index():
     table = data.table("Zone")
     table = table.all()
     return jsonify({"data": table})
+
+
+@app.route("/api/v1.0/getRole", methods=["POST"])
+# @token_required
+def getRolePerUser():
+    request_data = request.get_json()
+    print(request_data)
+    username = str(request_data["username"])
+    print("main: " + User.getRole(username))
+    aaa = User.getRole(username)
+    return jsonify({"data": aaa})
 
 
 @app.route("/api/v1.0/update", methods=["POST"])

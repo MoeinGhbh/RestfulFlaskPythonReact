@@ -39,3 +39,9 @@ class User(db.Model):
         new_user = User(username=_username, password=_password, role=_role)
         db.session.add(new_user)
         db.session.commit()
+
+    def getRole(_username):
+        user = User.query.filter_by(username=_username).first()
+        if user is not None:
+            print(user.role)
+            return user.role

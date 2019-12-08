@@ -18,17 +18,20 @@ class login extends Component {
   }
 
   routChange = event => {
-    const gotUser = this.state["name"]
-    const gotPass = this.state["pass"]
+    const {name,pass} = this.state
 
-    axios.post("http://127.0.0.1:5000/api/login",{"username":gotUser,"password":gotPass})
-        .then(res =>{
-          this.setState({loginToken: res.data})
-        })
-    console.log(this.state)
-    localStorage.setItem("LStoken", this.loginToken);
-    const ttt = localStorage.getItem('LStoken')
-    console.log(ttt)
+     if(name=="" || pass=="")
+      alert('لطفا نام کاربری و رمز عبور خود را وارد کنید')
+    else {
+       axios.post("http://127.0.0.1:5000/api/login", {"username": name, "password": pass})
+           .then(res => {
+             this.setState({loginToken: res.data})
+           })
+       if (this.state["loginToken"] == "")
+         alert('نام کاربری یا رمز عبور اشتباه می باشد')
+       else
+         localStorage.setItem("LStoken", this.state["loginToken"]);
+     }
     //this.props.history.push("/Home");
   }
   routChangeBack() {

@@ -7,7 +7,7 @@ import axios from "axios";
 class login extends Component {
   constructor(props) {
     super(props);
-    this.state = {loginToken:'',name:'',pass:''}
+    this.state = {loginToken:'',name:'',pass:'', role:''}
     this.routChangeBack = this.routChangeBack.bind(this);
   }
 
@@ -25,14 +25,31 @@ class login extends Component {
     else {
        axios.post("http://127.0.0.1:5000/api/login", {"username": name, "password": pass})
            .then(res => {
-             this.setState({loginToken: res.data})
+             if(res.status==200) {
+               this.setState({loginToken: res.data})
+             }
            })
+
        if (this.state["loginToken"] == "")
          alert('نام کاربری یا رمز عبور اشتباه می باشد')
-       else
-         localStorage.setItem("LStoken", this.state["loginToken"]);
+       else if (this.state["loginToken"] != "")
+       {
+         const myToken = this.state["loginToken"]
+         console.log(myToken)
+         // axios.post("http://127.0.0.1:5000/api/v1.0/getRole", {"username": name,"token":myToken})
+         //   .then(resu => {
+         //     if(resu.status==200) {
+         //       this.setState({role: resu.data})
+         //     }
+         //   })
+         // console.log("aa "+ this.state["role"])
+         // console.log(this.state)
+          localStorage.setItem("LSrole", this.state["loginToken"]);
+         //console.log(localStorage.getItem("LSrole"))
+         this.props.history.push("/Home");
+       }
      }
-    //this.props.history.push("/Home");
+
   }
   routChangeBack() {
     this.props.history.push("/");

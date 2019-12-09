@@ -69,6 +69,7 @@ class Home extends Component {
 
   render() {
     const { data, handler } = this.props;
+    console.log({data})
     return (
       <div class="container-fluid">
         <h1>BMS</h1>

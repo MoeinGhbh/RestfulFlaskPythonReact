@@ -11,8 +11,8 @@ from userModel import User
 
 data = TinyDB("data.json")
 table = data.table("Zone")
-# table.insert({"id": 1, "name": "TVRoom","accessLevel":"Parent", "items": [{"id": 1, "group": "lamp",
-# "name": "Halogen", "status": "on"}]})
+# table.insert({"id": 1, "name": "TVRoom", "accessLevel": "Parent", "items": [{"id": 1, "group": "lamp",
+#                                                                              "name": "Halogen", "status": "true"}]})
 table = table.all()
 
 CORS(app)
@@ -56,7 +56,7 @@ def my_index():
     return jsonify({"data": table})
 
 
-@app.route("/api/v1.0/getRole", methods=["POST"])
+@app.route("/api/v1.0/getRole", methods=["GET", "POST"])
 # @token_required
 def getRolePerUser():
     request_data = request.get_json()

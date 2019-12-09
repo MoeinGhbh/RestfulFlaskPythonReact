@@ -36,17 +36,19 @@ class login extends Component {
        {
          const myToken = this.state["loginToken"]
          console.log(myToken)
-         // axios.post("http://127.0.0.1:5000/api/v1.0/getRole", {"username": name,"token":myToken})
-         //   .then(resu => {
-         //     if(resu.status==200) {
-         //       this.setState({role: resu.data})
-         //     }
-         //   })
+         axios.post("http://127.0.0.1:5000/api/v1.0/getRole", {"username": name,"token":myToken})
+           .then(resu => {
+             if(resu.status==200) {
+               this.setState({role: resu.data})
+                 console.log( "asdaws ")
+                 console.log( "asdaws " + resu.data)
+             }
+           })
          // console.log("aa "+ this.state["role"])
          // console.log(this.state)
           localStorage.setItem("LSrole", this.state["loginToken"]);
          //console.log(localStorage.getItem("LSrole"))
-         this.props.history.push("/Home");
+         //this.props.history.push("/Home");
        }
      }
 

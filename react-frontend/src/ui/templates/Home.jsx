@@ -20,7 +20,7 @@ class Home extends Component {
     this.state = {
             data: []}
     this.handler = this.handler.bind(this);
-    const x = localStorage.getItem("role")
+    const x = localStorage.getItem("LSrole")
       console.log(localStorage.getItem("LStoken"))
        console.log(x)
   }

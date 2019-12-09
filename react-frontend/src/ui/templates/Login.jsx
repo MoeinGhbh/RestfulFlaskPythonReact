@@ -37,18 +37,20 @@ class login extends Component {
          const myToken = this.state["loginToken"]
          console.log(myToken)
          axios.post("http://127.0.0.1:5000/api/v1.0/getRole", {"username": name,"token":myToken})
-           .then(resu => {
-             if(resu.status==200) {
-               this.setState({role: resu.data})
-                 console.log( "asdaws ")
-                 console.log( "asdaws " + resu.data)
+           .then(res => {
+             if(res.status==200) {
+               this.setState({role: res.data.MineUserRole})
+
              }
            })
-         // console.log("aa "+ this.state["role"])
-         // console.log(this.state)
-          localStorage.setItem("LSrole", this.state["loginToken"]);
-         //console.log(localStorage.getItem("LSrole"))
-         //this.props.history.push("/Home");
+
+
+         localStorage.setItem("LStoken", this.state["loginToken"]);
+         localStorage.setItem("LSrole" , this.state["role"]);
+
+
+         if (localStorage.getItem("LSrole") != "")
+                this.props.history.push("/Home");
        }
      }
 
@@ -72,7 +74,7 @@ class login extends Component {
               <label>نام کاربری</label>
             </td>
             <td>
-              <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
+              <input  type="text" name="name" value={this.state.name} onChange={this.handleChange} />
             </td>
           </tr>
           <tr>
@@ -80,7 +82,7 @@ class login extends Component {
               <label>رمز عبور</label>
             </td>
             <td>
-              <input type="text" name="pass" value={this.state.pass} onChange={this.handleChange} />
+              <input  type="password" name="pass" value={this.state.pass} onChange={this.handleChange} />
             </td>
           </tr>
 

@@ -64,7 +64,7 @@ def getRolePerUser():
     username = str(request_data["username"])
     print("main: " + User.getRole(username))
     aaa = User.getRole(username)
-    return jsonify({"data": aaa})
+    return jsonify({"MineUserRole": aaa})
 
 
 @app.route("/api/v1.0/update", methods=["POST"])

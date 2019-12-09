@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 export default class MenuItem extends Component {
   render() {
        let { name } = this.props;
-       console.log({name})
+       //console.log({name})
     return (
       <NavDropdown.Item href="Division" eventKey={4}>
       {name}

@@ -4,12 +4,13 @@ import jwt
 from flask import jsonify, request, Response
 from flask_cors import CORS
 from settings import app
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
 from functools import wraps
 
 from userModel import User
 
 data = TinyDB("data.json")
+smQuery = Query()
 table = data.table("Zone")
 # table.insert({"id": 1, "name": "TVRoom", "accessLevel": "Parent", "items": [{"id": 1, "group": "lamp",
 #                                                                              "name": "Halogen", "status": "true"}]})
@@ -68,10 +69,16 @@ def my_index():
 
 
 @app.route("/api/v1.0/update", methods=["POST"])
-# @token_required
+@token_required
 def update_status():
     request_data = request.get_json()
-    return jsonify({"data": "table"})
+    print(request_data)
+    table = data.table("Zone")
+    table = table.all()
+    db = Query()
+    # db.search(table.)
+    print(table)
+    return jsonify(dict(data='a'))
 
 
 @app.errorhandler(404)

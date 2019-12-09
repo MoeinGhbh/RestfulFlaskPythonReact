@@ -12,12 +12,12 @@ class ZoneCard extends Component {
         super(props);
     }
         updateState=(e)=>{
-            const{ items,zoneIndex } = this.props;
+            const{ items,zoneIndex, name } = this.props;
             let itemsTemp=items;
 
             itemsTemp[parseInt(e.target.name)].status=e.target.checked;
             // Object.assign(items, { status:  e.target.checked });
-            this.props.handler(itemsTemp,zoneIndex)
+            this.props.handler(itemsTemp,zoneIndex,name)
             // console.log(itemsTemp)
         }
 

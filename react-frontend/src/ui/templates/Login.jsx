@@ -35,25 +35,23 @@ class login extends Component {
        else if (this.state["loginToken"] != "")
        {
          const myToken = this.state["loginToken"]
-         console.log(myToken)
-         axios.post("http://127.0.0.1:5000/api/v1.0/getRole", {"username": name,"token":myToken})
+         //console.log(myToken)
+         //console.log(name)
+         axios.post("http://127.0.0.1:5000/api/v1.0/getRole?token="+myToken, {"username": name})
            .then(res => {
              if(res.status==200) {
                this.setState({role: res.data.MineUserRole})
-
              }
            })
-
-
          localStorage.setItem("LStoken", this.state["loginToken"]);
          localStorage.setItem("LSrole" , this.state["role"]);
 
-
+         //console.log(localStorage.getItem("LStoken"))
+         //console.log(this.state)
          if (localStorage.getItem("LSrole") != "")
                 this.props.history.push("/Home");
        }
      }
-
   }
   routChangeBack() {
     this.props.history.push("/");

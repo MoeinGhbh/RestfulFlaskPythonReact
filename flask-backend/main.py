@@ -48,16 +48,8 @@ def token_required(f):
     return wrapper
 
 
-@app.route("/api/v1.0/allHome", methods=["GET", "POST"])
-# @token_required
-def my_index():
-    table = data.table("Zone")
-    table = table.all()
-    return jsonify({"data": table})
-
-
 @app.route("/api/v1.0/getRole", methods=["GET", "POST"])
-# @token_required
+@token_required
 def getRolePerUser():
     request_data = request.get_json()
     print(request_data)
@@ -67,21 +59,19 @@ def getRolePerUser():
     return jsonify({"MineUserRole": aaa})
 
 
-@app.route("/api/v1.0/update", methods=["POST"])
+@app.route("/api/v1.0/allHome", methods=["GET", "POST"])
 @token_required
+def my_index():
+    table = data.table("Zone")
+    table = table.all()
+    return jsonify({"data": table})
+
+
+@app.route("/api/v1.0/update", methods=["POST"])
+# @token_required
 def update_status():
     request_data = request.get_json()
-    username = str(request_data["username"])
-    password = str(request_data["password"])
-    role = str(request_data["role"])
-
-    match = User.username_password_match(username, password)
-    print(username)
-    print(password)
-    print(role)
-    print(match)
-    print(request_data)
-    return jsonify({"data": table})
+    return jsonify({"data": "table"})
 
 
 @app.errorhandler(404)

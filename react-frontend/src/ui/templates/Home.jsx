@@ -20,31 +20,20 @@ class Home extends Component {
     this.state = {
             data: []}
     this.handler = this.handler.bind(this);
-    const x = localStorage.getItem("LSrole")
-      console.log(localStorage.getItem("LStoken"))
-       console.log(x)
+    const myRole = localStorage.getItem("LSrole")
+    const myToken =   localStorage.getItem("LStoken")
+       //console.log(myRole)
+      //console.log(myToken)
   }
    componentDidMount() {
-      axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
+      axios.post('http://127.0.0.1:5000/api/v1.0/allHome?token='+ localStorage.getItem("LStoken"))
             .then(res =>{
                 this.setState({data: res.data.data})
             })
-       setInterval(()=> axios.get('http://127.0.0.1:5000/api/v1.0/allHome')
+       setInterval(()=> axios.post('http://127.0.0.1:5000/api/v1.0/allHome?token='+ localStorage.getItem("LStoken"))
             .then(res =>{
                 this.setState({data: res.data.data})
             }),20000)
-
-
-      //  console.log("sdfgsdfgsd"+ localStorage.getItem("LStoken"))
-      // axios.post('http://127.0.0.1:5000/api/v1.0/allHome', {"token":localStorage.getItem("LStoken")})
-      //       .then(res =>{
-      //           this.setState({data: res.data.data})
-      //       })
-      //  setInterval(()=> axios.post('http://127.0.0.1:5000/api/v1.0/allHome', {"token":localStorage.getItem("LStoken")})
-      //       .then(res =>{
-      //           this.setState({data: res.data.data})
-      //       }),2000)
-
     }
 
 
@@ -52,24 +41,22 @@ class Home extends Component {
       console.log("data " ,data,zoneIndex);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
       //  "1": {"id": 1, "name": "TVRoom",items:[] },
 
-      this.state.data[parseInt(zoneIndex)].items=data;
-      this.setState({...this.state});
+      // this.state.data[parseInt(zoneIndex)].items=data;
+      // this.setState({...this.state});
 
-      axios.post("url",{}).then(res=>{
-          if(res.status==200){
-              this.state.data[parseInt(zoneIndex)].items=data;
-              this.setState({...this.state});
+      axios.post("http://127.0.0.1:5000/api/v1.0/update",{})
+          .then(res=>{
+              if(res.status==200){
+                  this.state.data[parseInt(zoneIndex)].items=data;
+                  this.setState({...this.state});
           }
       })
 
   }
 
-
-
-
   render() {
     const { data, handler } = this.props;
-    console.log({data})
+    //console.log({data})
     return (
       <div class="container-fluid">
         <h1>BMS</h1>

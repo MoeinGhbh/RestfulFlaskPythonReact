@@ -10,7 +10,6 @@ from functools import wraps
 from userModel import User
 
 data = TinyDB("data.json")
-smQuery = Query()
 table = data.table("Zone")
 # table.insert({"id": 1, "name": "TVRoom", "accessLevel": "Parent", "items": [{"id": 1, "group": "lamp",
 #                                                                              "name": "Halogen", "status": "true"}]})
@@ -63,22 +62,25 @@ def getRolePerUser():
 @app.route("/api/v1.0/allHome", methods=["GET", "POST"])
 @token_required
 def my_index():
-    table = data.table("Zone")
-    table = table.all()
-    return jsonify({"data": table})
+    data = TinyDB("data.json")
+    data = data.table("Zone")
+    data = data.all()
+    return jsonify({"data": data})
 
 
 @app.route("/api/v1.0/update", methods=["POST"])
 @token_required
 def update_status():
     request_data = request.get_json()
+    zonename = str(request_data["nameZone"])
     print(request_data)
-    table = data.table("Zone")
-    table = table.all()
-    db = Query()
-    # db.search(table.)
-    print(table)
-    return jsonify(dict(data='a'))
+    data1 = TinyDB("data.json")
+    data1 = data1.table("Zone")
+    data1.all()
+    fruit = Query()
+    print(data1.search(fruit.name == zonename))
+    print(data1.search(fruit.name == zonename))
+    return jsonify(data1.search(fruit.name == zonename))
 
 
 @app.errorhandler(404)

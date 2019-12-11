@@ -13,7 +13,7 @@ export default class ZoneSection extends Component {
             {/*{console.log("data",data)}*/}
 
            {data.map((Zone,index) => {
-             return <div id="Zone"> <h2> {Zone.name} </h2>   <ZoneCard zoneIndex={index} name={Zone.name} items={Zone.items} handler={handler}  className="card" /> </div>;
+             return <div id="Zone"> <h2> {Zone.zoneName} </h2>   <ZoneCard zoneIndex={index} zoneName={Zone.zoneName} items={Zone.items} handler={handler}  className="card" /> </div>;
           })}
       </div>
     );

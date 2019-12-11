@@ -9,11 +9,11 @@ from functools import wraps
 
 from userModel import User
 
-data = TinyDB("data.json")
-table = data.table("Zone")
+# data = TinyDB("data.json")
+# table = data.table("Zone")
 # table.insert({"id": 1, "name": "TVRoom", "accessLevel": "Parent", "items": [{"id": 1, "group": "lamp",
 #                                                                              "name": "Halogen", "status": "true"}]})
-table = table.all()
+# table = table.all()
 
 CORS(app)
 
@@ -73,14 +73,21 @@ def my_index():
 def update_status():
     request_data = request.get_json()
     zonename = str(request_data["nameZone"])
+    # status = str(request_data["status"])
+    # print(status)
+    tmp = "true"
+    # if status == "true":
+    #     tmp = "false"
+    # else:
+    #     tmp = "true"
+
     print(request_data)
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     data1.all()
-    fruit = Query()
-    print(data1.search(fruit.name == zonename))
-    print(data1.search(fruit.name == zonename))
-    return jsonify(data1.search(fruit.name == zonename))
+    query = Query()
+    data1.update({"status": tmp}, query.name == zonename)
+    return jsonify({"data": data1.all()})
 
 
 @app.errorhandler(404)

@@ -33,7 +33,7 @@ class Home extends Component {
        setInterval(()=> axios.post('http://127.0.0.1:5000/api/v1.0/allHome?token='+ localStorage.getItem("LStoken"))
             .then(res =>{
                 this.setState({data: res.data.data})
-            }),20000)
+            }),2000)
     }
 
 

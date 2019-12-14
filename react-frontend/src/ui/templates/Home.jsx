@@ -38,7 +38,9 @@ class Home extends Component {
 
 
   handler=(data,zoneIndex, name)=> {
-      console.log("data" ,data,zoneIndex,name);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
+      console.log("data" ,data , zoneIndex,name);
+
+      //"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
       //  "1": {"id": 1, "name": "TVRoom",items:[] },
 
       // this.state.data[parseInt(zoneIndex)].items=data;

@@ -11,24 +11,19 @@ class ZoneCard extends Component {
     constructor(props){
         super(props);
     }
-        updateState=(e)=>{
+
+    updateState=(e)=>{
             const{ items,zoneIndex, zoneName } = this.props;
+
             let itemsTemp=items;
+
+            //console.log("to zone cartim "+ itemsTemp ,zoneIndex, zoneName)
 
             itemsTemp[parseInt(e.target.name)].status=e.target.checked;
             // Object.assign(items, { status:  e.target.checked });
             this.props.handler(itemsTemp,zoneIndex,zoneName)
             // console.log(itemsTemp)
-        }
-
-        // const[state, setState] = React.useState({
-        //     checkedA: true,
-        //     checkedB: true,
-        //   });
-        //
-        // const handleChange = name => event => {
-        //     setState({ ...state, [name]: event.target.checked });
-        //   };
+    }
 
     render() {
     let { zoneName } = this.props;
@@ -37,19 +32,18 @@ class ZoneCard extends Component {
 
     return (
       <div className="Card">
-        <h3>{zoneName}</h3>
-        {/* <img src={} height="42" width="42" /> */}
+
 
          {items.map((item,index)=>{
              console.log("item.status ",Boolean(item.status.toString()));
              return(<div>
-                    <label> {item.group}  {item.itemName} {item.status}  {Boolean('true')} {Boolean('True')} </label>
+                    <label>  {item.group} {item.itemName}   </label>
 
                     <Switch
                         name={index}
                         checked={item.status.toString()=="true"}
                         onChange={this.updateState}
-                        // inputProps={{ 'aria-label': 'secondary checkbox' }}
+
                     />
                 </div>)
             })

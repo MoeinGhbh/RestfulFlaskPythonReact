@@ -72,21 +72,13 @@ def my_index():
 @token_required
 def update_status():
     request_data = request.get_json()
-    zonename = str(request_data["nameZone"])
-    # status = str(request_data["status"])
-    # print(status)
-    tmp = "true"
-    # if status == "true":
-    #     tmp = "false"
-    # else:
-    #     tmp = "true"
-
-    print(request_data)
+    zoneIndex = request_data["zoneIndex"]
+    dataitem = request_data["dataitem"]
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     data1.all()
     query = Query()
-    data1.update({"status": tmp}, query.name == zonename)
+    data1.update({"items": dataitem}, query.zoneId == (zoneIndex+1))
     return jsonify({"data": data1.all()})
 
 

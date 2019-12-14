@@ -23,7 +23,6 @@ app.config["SECRET_KEY"] = 'meow'
 @app.route("/api/login", methods=["GET", "POST"])
 def get_token():
     request_data = request.get_json()
-    print(request_data)
     username = str(request_data["username"])
     password = str(request_data["password"])
     match = User.username_password_match(username, password)
@@ -52,9 +51,8 @@ def token_required(f):
 @token_required
 def getRolePerUser():
     request_data = request.get_json()
-    print(request_data)
     username = str(request_data["username"])
-    print("main: " + User.getRole(username))
+    # print("main: " + User.getRole(username))
     aaa = User.getRole(username)
     return jsonify({"MineUserRole": aaa})
 
@@ -68,17 +66,34 @@ def my_index():
     return jsonify({"data": data})
 
 
+@app.route("/api/v1.0/perRoleHome", methods=["GET", "POST"])
+@token_required
+def perRoleHome():
+    request_data = request.get_json()
+    role = str(request_data["role"])
+    data = TinyDB("data.json")
+    data = data.table("Zone")
+    query = Query()
+    print(role)
+    if role == "admin":
+        return jsonify({"data": data.all()})
+    else:
+        return jsonify({"data": data.search(query.accessLevel == role)})
+
+
 @app.route("/api/v1.0/update", methods=["POST"])
 @token_required
 def update_status():
     request_data = request.get_json()
     zoneIndex = request_data["zoneIndex"]
     dataitem = request_data["dataitem"]
+    print(zoneIndex)
+    print(dataitem)
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     data1.all()
     query = Query()
-    data1.update({"items": dataitem}, query.zoneId == (zoneIndex+1))
+    data1.update({"items": dataitem}, query.zoneId == (zoneIndex + 1))
     return jsonify({"data": data1.all()})
 
 

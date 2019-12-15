@@ -22,29 +22,29 @@ class ZoneCard extends Component {
             rwLMP.push(<Button> حذف </Button> );
           }
 
-    for (j in  items)  
+    for (j in  items)
       for (i in items[j].Curtains)
       {
         rwCTN.push(<Button> پرده {i} </Button> );
         rwCTN.push(<Button> حذف </Button> );
-      }  
-      
-      for (j in  items)  
+      }
+
+      for (j in  items)
       for (i in items[j].AirCondition)
       {
         rwACD.push(<Button> گرمایش / سرمایش {i} </Button> );
         rwACD.push(<Button> حذف </Button> );
-      } 
+      }
 
-      for (j in  items)  
+      for (j in  items)
       for (i in items[j].Socket)
       {
         rwSKT.push(<Button> پریز {i} </Button> );
         rwSKT.push(<Button> حذف </Button> );
-      } 
+      }
 
 
-    
+
     return (
       <div className="Card">
         <h3>{content}</h3>

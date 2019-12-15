@@ -87,13 +87,14 @@ def update_status():
     request_data = request.get_json()
     zoneIndex = request_data["zoneIndex"]
     dataitem = request_data["dataitem"]
+    zoneId = request_data["zoneId"]
     print(zoneIndex)
     print(dataitem)
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     data1.all()
     query = Query()
-    data1.update({"items": dataitem}, query.zoneId == (zoneIndex + 1))
+    data1.update({"items": dataitem}, query.zoneId == zoneId)
     return jsonify({"data": data1.all()})
 
 

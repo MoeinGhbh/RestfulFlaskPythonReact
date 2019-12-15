@@ -37,14 +37,14 @@ class Home extends Component {
     }
 
 
-  handler=(data,zoneIndex, name)=> {
-      console.log("data" ,data,zoneIndex,name);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
+  handler=(data,zoneIndex, name, zoneId)=> {
+      console.log("data" ,data,zoneIndex,name, zoneId);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
       //  "1": {"id": 1, "name": "TVRoom",items:[] },
 
       // this.state.data[parseInt(zoneIndex)].items=data;
       // this.setState({...this.state});
 
-      axios.post("http://127.0.0.1:5000/api/v1.0/update?token="+ localStorage.getItem("LStoken"),{"zoneIndex":zoneIndex,"dataitem":data,"nameZone":name })
+      axios.post("http://127.0.0.1:5000/api/v1.0/update?token="+ localStorage.getItem("LStoken"),{"zoneIndex":zoneIndex,"dataitem":data,"nameZone":name, "zoneId":zoneId })
           .then(res=>{
               if(res.status==200){
                   this.state.data[parseInt(zoneIndex)].items=data;

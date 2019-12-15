@@ -3,22 +3,17 @@ import React, {Component} from "react";
 //import logo from "./img/profile.jpg";
 //import logoWhite from "./img/logo-white.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import data from "../../../Data";
-//import { SocialIcon } from "react-social-icons";
 import MenuItem from "./MenuItems";
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
-import data from "../../../Data";
 
 export default class NavagationSection extends Component {
 
     render() {
         const {data} = this.props;
+        console.log(data)
         return (
             <div>
                 <session>
@@ -48,7 +43,12 @@ export default class NavagationSection extends Component {
                   Bed Rome South
                 </NavDropdown.Item> */}
                             </NavDropdown>
-                            <Nav.Link href="/Panel">Control Panel</Nav.Link>
+                            <Nav.Link href="/Panel" to={{
+                                      pathname: '/Panel',
+                                      state: {
+                                        state: {data}
+                                      }
+                                    }}>Control Panel</Nav.Link>
                             <Nav.Link href="/ChangePassword">Change Password</Nav.Link>
                         </Nav>
                         {/* <Form inline>

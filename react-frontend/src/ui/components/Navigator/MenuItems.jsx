@@ -8,6 +8,8 @@ export default class MenuItem extends Component {
 
     render() {
         const {zoneName} = this.props;
+        const {data} = this.props;
+
         // var anchor = JSON.stringify(zoneName);
         // var pond = "#";
         // var t = pond.concat(anchor);

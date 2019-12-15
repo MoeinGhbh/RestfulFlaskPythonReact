@@ -7,7 +7,7 @@ import Login from './ui/templates/Login';
 import DefineZone from './ui/templates/DefineZone';
 import Panel from './ui/templates/Panel';
 import ChangePassword from './ui/templates/ChangePassword';
-import Division from './ui/templates/Division'
+
 
 //function App() {
 class App extends Component {
@@ -25,7 +25,6 @@ class App extends Component {
                         <Route path="/Panel" component={Panel}/>
                         <Route path="/DefineZone" component={DefineZone}/>
                         <Route path="/ChangePassword" component={ChangePassword}/>
-                        <Route path="/Division" component={Division}/>
                     </Switch>
                 </BrowserRouter>
                 {/*<header className="App-header">*/}

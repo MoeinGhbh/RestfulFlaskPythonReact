@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 //import "./css/navigationSection.css";
 //import logo from "./img/profile.jpg";
 //import logoWhite from "./img/logo-white.png";
@@ -17,18 +17,18 @@ import data from "../../../Data";
 
 export default class NavagationSection extends Component {
 
-  render() {
-    const { data , handler} = this.props;
-    return (
-      <div>
-        <session>
-          <Navbar bg="primary" variant="dark">
-            <Nav className="mr-auto">
-              <NavDropdown title="Home" id="collasible-nav-dropdown">
-                {data.map(submenu => {
-                  return <MenuItem data={this.data} handler={this.handler} name={submenu.name} />;
-                })}
-                {/* <NavDropdown.Item href="#TVRome/3.1">
+    render() {
+        const {data} = this.props;
+        return (
+            <div>
+                <session>
+                    <Navbar bg="primary" variant="dark">
+                        <Nav className="mr-auto">
+                            <NavDropdown title="Home" id="collasible-nav-dropdown">
+                                {data.map(submenu => {
+                                    return <MenuItem zoneName={submenu.zoneName}/>;
+                                })}
+                                {/* <NavDropdown.Item href="#TVRome/3.1">
                   Intro
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -47,11 +47,11 @@ export default class NavagationSection extends Component {
                 <NavDropdown.Item href="#action/3.4">
                   Bed Rome South
                 </NavDropdown.Item> */}
-              </NavDropdown>
-              <Nav.Link href="/Login" >Control Panel</Nav.Link>
-              <Nav.Link href="/ChangePassword">Change Password</Nav.Link>
-            </Nav>
-            {/* <Form inline>
+                            </NavDropdown>
+                            <Nav.Link href="/Panel">Control Panel</Nav.Link>
+                            <Nav.Link href="/ChangePassword">Change Password</Nav.Link>
+                        </Nav>
+                        {/* <Form inline>
               <FormControl
                 type="text"
                 placeholder="Search"
@@ -59,9 +59,9 @@ export default class NavagationSection extends Component {
               />
               <Button variant="outline-light">Search</Button>
             </Form> */}
-            <Navbar.Brand href="#home">به خانه ی هوشمند خوش آمدید</Navbar.Brand>
-          </Navbar>
-          {/* <Nav justify variant="tabs" defaultActiveKey="/home">
+                        <Navbar.Brand href="#home">به خانه ی هوشمند خوش آمدید</Navbar.Brand>
+                    </Navbar>
+                    {/* <Nav justify variant="tabs" defaultActiveKey="/home">
             <Nav.Item>
               <Nav.Link href="/home">Active</Nav.Link>
             </Nav.Item>
@@ -77,8 +77,8 @@ export default class NavagationSection extends Component {
               </Nav.Link>
             </Nav.Item>
           </Nav> */}
-        </session>
-      </div>
-    );
-  }
+                </session>
+            </div>
+        );
+    }
 }

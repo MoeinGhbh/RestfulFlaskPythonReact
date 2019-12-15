@@ -4,7 +4,6 @@ import './App.css';
 import {Route, BrowserRouter, Switch} from "react-router-dom";
 import Home from './ui/templates/Home';
 import Login from './ui/templates/Login';
-import DefineZone from './ui/templates/DefineZone';
 import Panel from './ui/templates/Panel';
 import ChangePassword from './ui/templates/ChangePassword';
 
@@ -23,7 +22,6 @@ class App extends Component {
                         <Route path="/" component={Login} exact={true}  />
                         <Route path="/Home" component={Home}/>
                         <Route path="/Panel" component={Panel}/>
-                        <Route path="/DefineZone" component={DefineZone}/>
                         <Route path="/ChangePassword" component={ChangePassword}/>
                     </Switch>
                 </BrowserRouter>

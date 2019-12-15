@@ -1,29 +1,22 @@
 import React, {Component, useEffect} from "react";
 import axios from "axios";
-//import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Navigator from "../components/Navigator/Navigation";
+import "./css/Home.css";
+import ZoneSection from "../components/Zones/ZoneSetion";
+import img from "../img/BMS.jpg";
 //import Container from "react-bootstrap/Container";
 //import Row from "react-bootstrap/Row";
 //import Col from "react-bootstrap/Col";
-import Navigator from "../components/Navigator/Navigation";
-import img from "../img/BMS.jpg";
-import "./css/Home.css";
-import ZoneSection from "../components/Zones/ZoneSetion";
-//import data from "../../Data.json";
-//import data2 from "../components/API";
-//import data2 from "../components/dataAcessLayer.jsx";
-
 
 class Home extends Component {
-  constructor() {
-    super();
+    constructor(props) {
+    super(props);
     this.state = {
             data: []}
     this.handler = this.handler.bind(this);
     const myRole = localStorage.getItem("LSrole")
     const myToken =   localStorage.getItem("LStoken")
-       //console.log(myRole)
-      //console.log(myToken)
   }
    componentDidMount() {
       axios.post('http://127.0.0.1:5000/api/v1.0/perRoleHome?token='+ localStorage.getItem("LStoken"), {"role":localStorage.getItem("LSrole")})
@@ -36,14 +29,8 @@ class Home extends Component {
             }),2000)
     }
 
-
   handler=(data,zoneIndex, name, zoneId)=> {
-      console.log("data" ,data,zoneIndex,name, zoneId);//"items": [{"id": 1, "group": "lamp", "name": "Halogen", "status": "true"},{"id": 2, "group": "lamp", "name": "luster", "status": "false"}]
-      //  "1": {"id": 1, "name": "TVRoom",items:[] },
-
-      // this.state.data[parseInt(zoneIndex)].items=data;
-      // this.setState({...this.state});
-
+      //console.log("data" ,data,zoneIndex,name, zoneId);
       axios.post("http://127.0.0.1:5000/api/v1.0/update?token="+ localStorage.getItem("LStoken"),{"zoneIndex":zoneIndex,"dataitem":data,"nameZone":name, "zoneId":zoneId })
           .then(res=>{
               if(res.status==200){
@@ -51,7 +38,6 @@ class Home extends Component {
                   this.setState({...this.state});
           }
       })
-
   }
 
   render() {

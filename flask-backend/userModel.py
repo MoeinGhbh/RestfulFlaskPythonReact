@@ -47,7 +47,9 @@ class User(db.Model):
 
     def changePassword(_username, _oldPassword, _newPassword):
         try:
-            User.query.filter_by(username=_username, password=_oldPassword).update(password=_newPassword)
+            aa = User.query.filter_by(username=_username, password=_oldPassword).first()
+            aa.password = _newPassword
+            db.session.commit()
             return "tha password successfully changed"
         except:
             return "user or password is wrong"

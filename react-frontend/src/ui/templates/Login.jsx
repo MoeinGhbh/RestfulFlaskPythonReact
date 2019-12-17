@@ -23,8 +23,8 @@ class login extends Component {
         if (name == "" || pass == "")
             alert('لطفا نام کاربری و رمز عبور خود را وارد کنید')
         else {
-            localStorage.setItem("username", {name})
-            localStorage.setItem("password", {pass})
+            localStorage.setItem("username", name)
+            localStorage.setItem("password", pass)
             axios.post("http://127.0.0.1:5000/api/login", {"username": name, "password": pass})
                 .then(res => {
                     if (res.status == 200) {

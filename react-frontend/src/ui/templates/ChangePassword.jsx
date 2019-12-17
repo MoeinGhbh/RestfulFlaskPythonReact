@@ -4,21 +4,25 @@ import axios from "axios";
 
 
 class ChangePassword extends Component {
+
     constructor(props) {
         super(props);
-         this.state = { oldpassword: '', newPassword: ''}
+        this.state = {oldPassword: '', newPassword: ''}
+        //console.log("aaaaaaa"+localStorage.getItem("username"))
     }
 
     changePassword = event => {
         const {oldPassword, newPassword} = this.state
-        axios.post("http://127.0.0.1:5000/api/v1.0/changePassword?token=" + localStorage.getItem("loginToken"), {
-            "username": localStorage.getItem("username"),
+        //console.log("bbbbbbb"+localStorage.getItem("username"))
+        const user = localStorage.getItem("username")
+        axios.post("http://127.0.0.1:5000/api/v1.0/changePassword?token=" + localStorage.getItem("LStoken"), {
+            "username": user,
             "oldPassword": oldPassword,
-             "newPassword": newPassword
-        }).then(r =>console.log(r))
+            "newPassword": newPassword
+        }).then(r => console.log(r))
     }
 
-     handleChange = event => {
+    handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -33,7 +37,8 @@ class ChangePassword extends Component {
                             <label>رمز قبلی</label>
                         </td>
                         <td>
-                            <input type="text" name="oldpassword" value={this.state.oldpassword} onChange={this.handleChange}/>
+                            <input type="text" name="oldPassword" value={this.state.oldPassword}
+                                   onChange={this.handleChange}/>
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +46,8 @@ class ChangePassword extends Component {
                             <label>رمز جدید</label>
                         </td>
                         <td>
-                            <input type="text" name="newPassword" value={this.state.newPassword} onChange={this.handleChange}/>
+                            <input type="text" name="newPassword" value={this.state.newPassword}
+                                   onChange={this.handleChange}/>
                         </td>
                     </tr>
                     <tr>

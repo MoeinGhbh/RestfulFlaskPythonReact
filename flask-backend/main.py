@@ -97,13 +97,16 @@ def update_status():
     return jsonify({"data": data1.all()})
 
 
-@app.route("/api/v1.0/changePassword", methods=["post"])
+@app.route("/api/v1.0/changePassword", methods=["GET", "POST"])
 @token_required
 def changePassword():
     request_data = request.get_json()
     username = str(request_data["username"])
     oldPassword = str(request_data["oldPassword"])
     newPassword = str(request_data["newPassword"])
+    print(username)
+    print(oldPassword)
+    print(newPassword)
     msg = User.changePassword(username, oldPassword, newPassword)
     return msg
 

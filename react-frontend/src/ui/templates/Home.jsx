@@ -17,6 +17,8 @@ class Home extends Component {
     this.handler = this.handler.bind(this);
     const myRole = localStorage.getItem("LSrole")
     const myToken =   localStorage.getItem("LStoken")
+
+        //console.log("sssssss"+localStorage.getItem("username"))
   }
    componentDidMount() {
       axios.post('http://127.0.0.1:5000/api/v1.0/perRoleHome?token='+ localStorage.getItem("LStoken"), {"role":localStorage.getItem("LSrole")})
@@ -55,7 +57,7 @@ class Home extends Component {
         <ZoneSection data={this.state.data} handler={this.handler} />
         {/* <Container>
           <Row>
-            <Col>TV Room</Col>
+      m fcv                        <Col>TV Room</Col>
             <Col>Kitchen</Col>
           </Row>
           <Row>

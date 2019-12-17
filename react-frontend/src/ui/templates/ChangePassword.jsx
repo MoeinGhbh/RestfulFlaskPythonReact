@@ -11,9 +11,8 @@ class ChangePassword extends Component {
 
     changePassword = event => {
         const {oldPassword, newPassword} = this.state
-        const myToken = this.state["loginToken"]
-        axios.post("http://127.0.0.1:5000/api/v1.0/changePassword?token=" + myToken, {
-            "usernamr": localStorage.getItem("username"),
+        axios.post("http://127.0.0.1:5000/api/v1.0/changePassword?token=" + localStorage.getItem("loginToken"), {
+            "username": localStorage.getItem("username"),
             "oldPassword": oldPassword,
              "newPassword": newPassword
         }).then(r =>console.log(r))

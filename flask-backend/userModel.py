@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from settings import app
 
-
 db = SQLAlchemy(app)
 
 
@@ -10,7 +9,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    role     = db.Column(db.String(80), nullable=False)
+    role = db.Column(db.String(80), nullable=False)
 
     # terminal
     # python (enter)
@@ -22,7 +21,7 @@ class User(db.Model):
         return str({
             "username": self.username,
             "password": self.password,
-            "role":self.role
+            "role": self.role
         })
 
     def username_password_match(_username, _password):
@@ -35,7 +34,7 @@ class User(db.Model):
     def getAllUsers():
         return User.query.all()
 
-    def createUser(_username, _password,_role):
+    def createUser(_username, _password, _role):
         new_user = User(username=_username, password=_password, role=_role)
         db.session.add(new_user)
         db.session.commit()
@@ -45,3 +44,10 @@ class User(db.Model):
         if user is not None:
             print(user.role)
             return user.role
+
+    def changePassword(_username, _oldPassword, _newPassword):
+        try:
+            User.query.filter_by(username=_username, password=_oldPassword).update(password=_newPassword)
+            return "tha password successfully changed"
+        except:
+            return "user or password is wrong"

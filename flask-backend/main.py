@@ -53,8 +53,7 @@ def getRolePerUser():
     request_data = request.get_json()
     username = str(request_data["username"])
     # print("main: " + User.getRole(username))
-    aaa = User.getRole(username)
-    return jsonify({"MineUserRole": aaa})
+    return jsonify({"MineUserRole": User.getRole(username)})
 
 
 @app.route("/api/v1.0/allHome", methods=["GET", "POST"])
@@ -96,6 +95,17 @@ def update_status():
     query = Query()
     data1.update({"items": dataitem}, query.zoneId == zoneId)
     return jsonify({"data": data1.all()})
+
+
+@app.route("/api/v1.0/changePassword", methods=["post"])
+@token_required
+def changePassword():
+    request_data = request.get_json()
+    username = str(request_data["username"])
+    oldPassword = str(request_data["oldPassword"])
+    newPassword = str(request_data["newPassword"])
+    msg = User.changePassword(username, oldPassword, newPassword)
+    return msg
 
 
 @app.errorhandler(404)

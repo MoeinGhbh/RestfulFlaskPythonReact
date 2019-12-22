@@ -1,4 +1,4 @@
-import React, {Component, TextInput} from "react";
+import React, {Component} from "react";
 import "./css/login.css";
 import {withRouter} from "react-router";
 import Button from "react-bootstrap/Button";
@@ -19,7 +19,6 @@ class login extends Component {
 
     routChange = event => {
         const {name, pass} = this.state
-
         if (name == "" || pass == "")
             alert('لطفا نام کاربری و رمز عبور خود را وارد کنید')
         else {
@@ -28,30 +27,22 @@ class login extends Component {
             axios.post("http://127.0.0.1:5000/api/login", {"username": name, "password": pass})
                 .then(res => {
                     if (res.status == 200) {
-                        this.setState({loginToken: res.data})
-                    }
-                })
-
-            if (this.state["loginToken"] == "")
-                alert('نام کاربری یا رمز عبور اشتباه می باشد')
-            else if (this.state["loginToken"] != "") {
-                const myToken = this.state["loginToken"]
-                //console.log(myToken)
-                //console.log(name)
-                axios.post("http://127.0.0.1:5000/api/v1.0/getRole?token=" + myToken, {"username": name})
-                    .then(res => {
-                        if (res.status == 200) {
-                            this.setState({role: res.data.MineUserRole})
+                        localStorage.setItem("LStoken", res.data);
+                        if (res.data != "") {
+                            axios.post("http://127.0.0.1:5000/api/v1.0/getRole?token=" + res.data, {"username": name})
+                                .then(res => {
+                                    if (res.status == 200) {
+                                        // this.setState({role: res.data.MineUserRole})
+                                        localStorage.setItem("LSrole", res.data.MineUserRole);
+                                        this.props.history.push("/Home", res.data.MineUserRole);
+                                    }
+                                })
                         }
-                    })
-                localStorage.setItem("LStoken", this.state["loginToken"]);
-                localStorage.setItem("LSrole", this.state["role"]);
-
-                //console.log(localStorage.getItem("LStoken"))
-                //console.log(this.state)
-                if (localStorage.getItem("LSrole") != "")
-                    this.props.history.push("/Home");
-            }
+                    }
+                }).catch(() => {
+                if (this.state["loginToken"] == "")
+                    alert('نام کاربری یا رمز عبور اشتباه می باشد')
+            })
         }
     }
 

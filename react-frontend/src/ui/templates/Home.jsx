@@ -5,9 +5,6 @@ import Navigator from "../components/Navigator/Navigation";
 import "./css/Home.css";
 import ZoneSection from "../components/Zones/ZoneSetion";
 import img from "../img/BMS.jpg";
-//import Container from "react-bootstrap/Container";
-//import Row from "react-bootstrap/Row";
-//import Col from "react-bootstrap/Col";
 
 class Home extends Component {
     constructor(props) {
@@ -17,8 +14,6 @@ class Home extends Component {
     this.handler = this.handler.bind(this);
     const myRole = localStorage.getItem("LSrole")
     const myToken =   localStorage.getItem("LStoken")
-
-        //console.log("sssssss"+localStorage.getItem("username"))
   }
    componentDidMount() {
       axios.post('http://127.0.0.1:5000/api/v1.0/perRoleHome?token='+ localStorage.getItem("LStoken"), {"role":localStorage.getItem("LSrole")})
@@ -43,8 +38,8 @@ class Home extends Component {
   }
 
   render() {
-    const { data, handler } = this.props;
-    //console.log({data})
+    const { data, handler,history } = this.props;
+    console.log(history.location.state)
     return (
       <div class="container-fluid">
         <h1>BMS</h1>
@@ -55,17 +50,6 @@ class Home extends Component {
           <img src={img} alt="" className="img" />
         </div>  */}
         <ZoneSection data={this.state.data} handler={this.handler} />
-        {/* <Container>
-          <Row>
-      m fcv                        <Col>TV Room</Col>
-            <Col>Kitchen</Col>
-          </Row>
-          <Row>
-            <Col>Rome 1</Col>
-            <Col>Rome 2</Col>
-            <Col>Rome 3</Col>
-          </Row>
-        </Container> */}
       </div>
     );
   }

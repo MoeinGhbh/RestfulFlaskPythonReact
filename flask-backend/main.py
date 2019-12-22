@@ -97,6 +97,28 @@ def update_status():
     return jsonify({"data": data1.all()})
 
 
+@app.route("/api/v1.0/addZone", methods=["POST"])
+@token_required
+def addZone():
+    request_data = request.get_json()
+    newZone = request_data["newZone"]
+    role = request_data["role"]
+    data1 = TinyDB("data.json")
+    data1 = data1.table("Zone")
+    query = Query()
+    if len(data1.search(query.zoneName == newZone)) == 0:
+        print(len(data1.search(query.zoneName == newZone)))
+        counter = len(data1) + 1
+        print(len(data1))
+        try:
+            data1.insert({"zoneId": counter, "zoneName": newZone, "accessLevel": role, "items": []})
+            return "The zone Added"
+        except:
+            return "the add does not successful"
+    else:
+        return "the Zone is exist"
+
+
 @app.route("/api/v1.0/changePassword", methods=["GET", "POST"])
 @token_required
 def changePassword():
@@ -117,9 +139,12 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('127.0.0.1', port=5000, debug=True)
 # else:
 #     app.config.update(
 #         SERVER_NAME='localhost:5000',
 #         APPLICATION_ROOT='/',
 #     )
+
+# netstat -tulpn
+# kill 9

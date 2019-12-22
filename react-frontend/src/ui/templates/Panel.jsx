@@ -1,157 +1,129 @@
 import React, {Component} from "react";
 import "./css/Panel.css";
-import Button from "react-bootstrap/Button";
-import Radio from '@material-ui/core/Radio';
-import ZoneCardEdit from "../components/Zones/ZoneCardEdit";
 import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button';
+import axios from "axios";
+import {makeStyles} from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 class Panel extends Component {
     constructor(props) {
         super(props);
-        var ZoneSelected,
-            ItemSelected = "";
-        var toooo = 0;
-        this.state = {checkState:[false]}
+        this.state = {checkState: false, newZone: '', role: '', age: ''}
+        const myToken = localStorage.getItem("LStoken")
     }
 
-    handler = (e) => {
+
+    updateState = (e) => {
+        this.setState({checkState: e.target.checked})
     }
 
-    updateJsonItems = (e) => {
-        //onsole.log(data)
-        //var myObj = JSON.stringify(data);
-        //var myObj =data;
-        //var i, j, h, nn;
-        // myObj.navigation.map(p=>(
-        //   console.log("aaaa"+p)
-        // ))
-        // for (i in data.navigation) {
-        //   //console.log(i);
-        //   for (j in data.[i].items) {
-        //     //console.log(j);
-        //     nn = data.navigation[i].items[j];
-        //     // for (h in nn.Lamp) {
-        //        //console.log(nn.Lamp);
-        //       //Object.assign( nn.Lamp, { "100000": "off" });
-        //     }
-        //     for (h in nn.Curtains) {
-        //       //console.log(h);
-        //       //oook.push(<label> myObj.navigation[i].items[j].lamp</label>);
-        //       //oook.push(<Button> delete </Button>);
-        //     }
-        //   }
-        this.toooo = Number(e.target.id) + 1;
-        //Object.assign( myObj.navigation.items.Lamp, { toooo: "off" });
-        //console.log(data.navigation[this.ItemSelected].items[this.ItemSelected]);
-        //Object.assign( myObj.navigation[this.ItemSelected].items[this.ItemSelected], { toooo: "off" });
-        // oook = "";
-        // var myObj, i, j, h, nn;
-        // myObj = data;
-        // var oook = [];
-        // for (i in myObj.navigation) {
-        //   for (j in myObj.navigation[i].items) {
-        //     nn = myObj.navigation[i].items[j];
-        //     for (h in nn.Lamp) {
-        //       console.log(h);
-        //     }
-        //     for (h in nn.Curtains) {
-        //       oook.push(<label> myObj.navigation[i].items[j].lamp</label>);
-        //       oook.push(<Button> delete </Button>);
-        //     }
-        //   }
-        // }
-        //this.handler(data);
+    getZoneRole = (e) => {
+        this.setState({[e.target.name]: e.target.value})
     }
 
-    ItemsOnZone = (e) => {
-        this.ItemSelected = e.target.value;
-        //console.log(e.target.value);
-        //this.setState({ inputvalue: e.target.value });
+    addZone = (e) => {
+        console.log(localStorage.getItem("LStoken"))
+        const {newZone, role} = this.state
+        axios.post("http://127.0.0.1:5000/api/v1.0/addZone?token=" + localStorage.getItem("LStoken"),
+            {
+                "newZone": this.state.newZone,
+                "role": this.state.role
+            })
+            .then(
+                r => console.log(r)
+            )
     }
 
-    SelectZone = (e) => {
-        this.ZoneSelected = e.target.value;
-        //console.log(this.ZoneSelected);
-        //this.setState({ inputvalue: e.target.value });
-    }
-
-    updateState = (e) =>{
-        e.checkState = e.target.checked
-        console.log("zSxfasdfs")
+    handleChange = (e) => {
+        this.setState({age:e.target.value})
+        // console.log('ssss'+this.state.age)
     }
 
     render() {
-        const {data, checkState} = this.props;
-        console.log("ssss" + data)
+
+
+
+
+
         return (
+
             <div className="divMain">
-                <table style={{border: "1px solid black"}}>
-                    <tr>
-                        <td colSpan="2">
-                            <label> اضافه کردن اقلام به خانه ی هوشمند </label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>آیا ناحیه جدید ایجاد شده است؟</label>
-                        </td>
-                        <td>
-                           <Switch
-                            checked={this.state.checkState}
-                            onChange={this.updateState}
-                        />
-                              <input type="text" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label> انتخاب قسمت خانه </label>
 
-                        </td>
-                        <td colSpan="2">
-                            {/*<select id="Zones" onChange={this.SelectZone}>*/}
-                                 <select id="Zones" >
-                                {/* items.map(item => {
-                                    return (<option value={item}>{item}</option>)
-                                  }) */}
-                                <option>Choose your option</option>
-                                <option value="0">TV Room</option>
-                                <option value="1">Kitchen</option>
-                                <option value="2">BathRoom</option>
-                                <option value="3">Room 1</option>
-                                <option value="4">Room 2</option>
-                                <option value="5">Room 3</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label> اضافه کردن اقلام به هر قسمت خانه </label>
-                        </td>
-                        <td colSpan="2">
-                            {/*<select id="Items" onChange={this.ItemsOnZone}>*/}
-                                <select id="Items">
-                                <option>Choose your option</option>
-                                <option value="0">Lamp</option>
-                                <option value="1">Curtains</option>
-                                <option value="2">AirCondition</option>
-                                <option value="3">Socket</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>انتخاب نام</label>
-                        </td>
-                        <input id="name"/>
-                    </tr>
 
+                <table>
                     <tr>
-                        <td colSpan="2"></td>
                         <td>
-                            {/*<Button onClick={this.updateJsonItems}> اضافه کردن </Button>*/}
-                            <Button> اضافه کردن </Button>
+
+                            <table style={{border: "1px solid black"}}>
+                                <tr>
+                                    <td colspan="2">
+                                        <label> اضافه کردن قسمت به خانه ی هوشمند </label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>آیا ناحیه جدید ایجاد شده است؟</label>
+                                    </td>
+                                    <td>
+                                        <Switch
+                                            checked={this.state.checkState}
+                                            onChange={this.updateState}
+                                        />
+                                    </td>
+                                    {this.state.checkState == true?
+                                        <label>نام قسمت جدید را وارد نمایید <input type="text" name="newZone" value={this.state.newZone}
+                                                                                           onChange={this.getZoneRole}/>
+                                            نقش را انتخاب نمایید <input type="text" value={this.state.role} onChange={this.getZoneRole}
+                                                                        name="role"/>
+                                            <Button variant="contained" color="secondary" onClick={this.addZone}> ذخیره</Button>
+                                        </label>:null}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <table>
+                                <tr>
+                                    <td colspan="2">
+                                        <label> اضافه کردن اقلام به خانه ی هوشمند </label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <FormControl>
+                                            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={this.state.age}
+
+                                                onChange={this.handleChange}
+                                            >
+                                                <MenuItem value="">
+                                                    <em>None</em>
+                                                </MenuItem>
+                                                <MenuItem value={10}>Ten</MenuItem>
+                                                <MenuItem value={20}>Twenty</MenuItem>
+                                                <MenuItem value={30}>Thirty</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>

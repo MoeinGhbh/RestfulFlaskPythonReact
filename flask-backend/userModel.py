@@ -53,3 +53,7 @@ class User(db.Model):
             return "tha password successfully changed"
         except:
             return "user or password is wrong"
+
+    def deleteUser(_username):
+        User.query.filter_by(username=_username).delete()
+

@@ -27,7 +27,7 @@ def get_token():
     password = str(request_data["password"])
     match = User.username_password_match(username, password)
     if match:
-        expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=100)
+        expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=300)
         token: object = jwt.encode({"exp": expiration_date}, app.config["SECRET_KEY"], algorithm="HS256")
         return token
     else:
@@ -73,7 +73,7 @@ def perRoleHome():
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()
-    print(role)
+    # print(role)
     if role == "admin":
         return jsonify({"data": data.all()})
     else:
@@ -87,8 +87,8 @@ def update_status():
     zoneIndex = request_data["zoneIndex"]
     dataitem = request_data["dataitem"]
     zoneId = request_data["zoneId"]
-    print(zoneIndex)
-    print(dataitem)
+    # print(zoneIndex)
+    # print(dataitem)
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     data1.all()
@@ -106,17 +106,13 @@ def addZone():
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     query = Query()
-    if len(data1.search(query.zoneName == newZone)) == 0:
-        print(len(data1.search(query.zoneName == newZone)))
-        counter = len(data1) + 1
-        print(len(data1))
-        try:
-            data1.insert({"zoneId": counter, "zoneName": newZone, "accessLevel": role, "items": []})
-            return "The zone Added"
-        except:
-            return "the add does not successful"
+    print((data1.search(query.zoneName)))
+    if data1.count(query.zoneName == newZone) > 0:
+        return "the Zone is exist", 500
     else:
-        return "the Zone is exist"
+        counter = len(data1) + 1
+        data1.insert({"zoneId": counter, "zoneName": newZone, "accessLevel": role, "items": []})
+        return "The zone successfully Added", 200
 
 
 @app.route("/api/v1.0/changePassword", methods=["GET", "POST"])
@@ -126,9 +122,9 @@ def changePassword():
     username = str(request_data["username"])
     oldPassword = str(request_data["oldPassword"])
     newPassword = str(request_data["newPassword"])
-    print(username)
-    print(oldPassword)
-    print(newPassword)
+    # print(username)
+    # print(oldPassword)
+    # print(newPassword)
     msg = User.changePassword(username, oldPassword, newPassword)
     return msg
 

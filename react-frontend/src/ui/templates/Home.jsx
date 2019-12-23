@@ -25,14 +25,13 @@ class Home extends Component {
                 }
             })
         setInterval(() => axios.post('http://127.0.0.1:5000/api/v1.0/perRoleHome?token=' + localStorage.getItem("LStoken"), {"role": localStorage.getItem("LSrole")})
-            .then(res => {
-                if (res.status == 200) {
-                    this.setState({data: res.data.data})
-                }
-            }).catch(r => {
-                this.props.history.push("/")
-                } )
-
+                .then(res => {
+                    if (res.status == 200) {
+                        this.setState({data: res.data.data})
+                    }
+                }).catch(r => {
+                    this.props.history.push("/")
+                })
             , 2000)
     }
 
@@ -62,8 +61,8 @@ class Home extends Component {
                 <Navigator data={this.state.data} handler={this.handler}/>
                 <br/>
                 {/* <div className="icone" id="icone">
-          <img src={img} alt="" className="img" />
-        </div>  */}
+                        <img src={img} alt="" className="img" />
+                </div>  */}
                 <ZoneSection data={this.state.data} handler={this.handler}/>
             </div>
         );

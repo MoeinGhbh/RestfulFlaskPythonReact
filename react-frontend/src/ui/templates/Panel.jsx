@@ -59,12 +59,13 @@ class Panel extends Component {
                 <table>
                     <tr>
                         <td>
-                            <CreateUser/>
+                            <CreateRole/>
+
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <CreateRole/>
+                            <CreateUser/>
                         </td>
                     </tr>
                     <tr>

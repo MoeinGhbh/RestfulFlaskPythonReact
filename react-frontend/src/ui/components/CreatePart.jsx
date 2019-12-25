@@ -31,10 +31,11 @@ class CreatePart extends Component {
     updateState = (e) => {
         console.log(e);
         this.setState({[e.target.name]: e.target.value})
+
     }
 
     addZone = (e) => {
-        //console.log(localStorage.getItem("LStoken"))
+        console.log('idel-time',localStorage.getItem("LStoken"))
         const {newZone, newZonerole} = this.state
         axios.post("http://127.0.0.1:5000/api/v1.0/addZone?token=" + localStorage.getItem("LStoken"),
             {
@@ -42,12 +43,16 @@ class CreatePart extends Component {
                 "role": newZonerole
             })
             .then(res => {
-                    this.setState({roles: res});
+                    if (res.status == 200) {
+                        alert('قسمت با موفقیت اضافه گردید')
+                        this.setState({newZone:""})
+                        this.setState({newZonerole:""})
+                    }
                 }
             )
-            .catch(() =>
-                // r => alert(r)
-                alert("این قسمت قبلا اضافه شده است")
+            .catch(() => {
+                    alert("این قسمت قبلا اضافه شده است")
+                }
             )
     }
 
@@ -80,16 +85,24 @@ class CreatePart extends Component {
                             />
                         </td>
                         {this.state.checkState == true ?
+
+
                             <label>
                                 نام قسمت جدید را وارد نمایید
+
                                 <input type="text"
                                        name="newZone"
                                        value={this.state.newZone}
                                        onChange={this.updateState}/>
-                                نقش را انتخاب نمایید
+                                <br/>
+                                <br/>
+                                <br/>
+                                نقش را انتخاب نمایید :
 
                                 <FormControl>
+                                    <br/>
                                     <InputLabel id="lblRole">نقش</InputLabel>
+                                    <br/>
                                     <Select
                                         labelId="lblRole"
                                         id="demo-simple-selectaaaa"
@@ -108,10 +121,14 @@ class CreatePart extends Component {
                                         }
                                     </Select>
                                 </FormControl>
-
+                                <br/>
+                                <br/>
                                 <Button variant="contained" color="secondary"
                                         onClick={this.addZone}> ذخیره</Button>
-                            </label> : null}
+                            </label>
+
+
+                            : null}
                     </tr>
                 </table>
             </div>

@@ -7,7 +7,7 @@ from settings import app
 from tinydb import TinyDB, Query
 from functools import wraps
 
-from userModel import User
+from userModel import *
 
 # data = TinyDB("data.json")
 # table = data.table("Zone")
@@ -47,12 +47,44 @@ def token_required(f):
     return wrapper
 
 
+@app.route("/api/v1.0/addrole", methods=["GET", "POST"])
+@token_required
+def createnewrole():
+    request_data = request.get_json()
+    role = str(request_data["role"])
+    msm = Role.createnewrole(role)
+    print(msm)
+    if msm == 200:
+        return jsonify("Role Added"), 200
+    else:
+        return jsonify("The role is exist"), 500
+
+
+@app.route("/api/v1.0/createuser", methods=["POST"])
+@token_required
+def createUser():
+    request_data = request.get_json()
+    username = str(request_data["username"])
+    password = str(request_data["password"])
+    roleId = str(request_data["roleId"])
+    msm = User.createUser(username, password, roleId)
+    if msm == 200:
+        return jsonify({"response": "User successfully added"}), 200
+    else:
+        return jsonify({"response": "add User failed"}), 500
+
+
+@app.route("/api/v1.0/GetAllroles", methods=["GET", "POST"])
+# @token_required
+def GetAllroles():
+    return jsonify({"data": Role.showall()})
+
+
 @app.route("/api/v1.0/getRole", methods=["GET", "POST"])
 @token_required
 def getRolePerUser():
     request_data = request.get_json()
     username = str(request_data["username"])
-    # print("main: " + User.getRole(username))
     return jsonify({"MineUserRole": User.getRole(username)})
 
 
@@ -73,7 +105,7 @@ def perRoleHome():
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()
-    # print(role)
+    # print(data.search(query.accessLevel == role))
     if role == "admin":
         return jsonify({"data": data.all()})
     else:
@@ -106,7 +138,7 @@ def addZone():
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     query = Query()
-    print((data1.search(query.zoneName)))
+    # print((data1.search(query.zoneName)))
     if data1.count(query.zoneName == newZone) > 0:
         return "the Zone is exist", 500
     else:

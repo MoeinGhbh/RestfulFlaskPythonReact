@@ -56,7 +56,7 @@ class CreateRole extends Component {
 
                     <tr>
                         <td colSpan="2">
-                            <Button type="button" onClick={this.addrole}>ذخیره</Button>
+                            <Button type="button" variant="contained" color="secondary" onClick={this.addrole}>ذخیره</Button>
                         </td>
                     </tr>
                 </table>

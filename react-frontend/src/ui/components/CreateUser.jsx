@@ -123,7 +123,7 @@ class CreateUser extends Component {
                     </tr>
                     <tr>
                         <td colSpan="2">
-                            <Button type="button" onClick={this.insertUserPass}>ذخیره</Button>
+                            <Button type="button" variant="contained" color="secondary" onClick={this.insertUserPass}>ذخیره</Button>
 
                         </td>
                     </tr>

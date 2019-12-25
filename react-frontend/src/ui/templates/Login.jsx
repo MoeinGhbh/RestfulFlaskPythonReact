@@ -32,6 +32,7 @@ class login extends Component {
                             axios.post("http://127.0.0.1:5000/api/v1.0/getRole?token=" + res.data, {"username": name})
                                 .then(res => {
                                     if (res.status == 200) {
+                                        console.log(res.data.MineUserRole);
                                         // this.setState({role: res.data.MineUserRole})
                                         localStorage.setItem("LSrole", res.data.MineUserRole);
                                         this.props.history.push("/Home", res.data.MineUserRole);

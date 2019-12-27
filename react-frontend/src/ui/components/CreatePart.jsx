@@ -7,14 +7,26 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {distancArray} from "../../Helper";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-
+import ListItemText from "@material-ui/core/ListItemText";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from '@material-ui/core/Input';
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
 class CreatePart extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             checkState: false,
             newZone: '',
-            newZonerole: '',
+            newZonerole: [],
             roles: []
         }
     }
@@ -35,7 +47,6 @@ class CreatePart extends Component {
     }
 
     addZone = (e) => {
-        console.log('idel-time',localStorage.getItem("LStoken"))
         const {newZone, newZonerole} = this.state
         axios.post("http://127.0.0.1:5000/api/v1.0/addZone?token=" + localStorage.getItem("LStoken"),
             {
@@ -57,7 +68,7 @@ class CreatePart extends Component {
     }
 
     changeCheckState = (e) => {
-        console.log("e=>>> ", e);
+        // console.log("e=>>> ", e);
         this.setState({checkState: e.target.checked})
     }
 
@@ -99,9 +110,13 @@ class CreatePart extends Component {
                                 <br/>
                                 نقش را انتخاب نمایید :
 
-                                <FormControl>
+
+                                <FormControl >
                                     <br/>
                                     <InputLabel id="lblRole">نقش</InputLabel>
+                                    <br/>
+                                    <br/>
+                                    <br/>
                                     <br/>
                                     <Select
                                         labelId="lblRole"
@@ -109,16 +124,17 @@ class CreatePart extends Component {
                                         value={this.state.newZonerole}
                                         onChange={this.updateState}
                                         name="newZonerole"
+                                        multiple
+                                        input={<Input />}
+                                        renderValue={selected => selected.join(', ')}
+                                        MenuProps={MenuProps}
                                     >
-                                        <MenuItem value={"none"}>
-                                            <em>None</em>
-                                        </MenuItem>
-                                        {
-                                            roles.map(roles => {
-                                                return (<MenuItem
-                                                    value={roles.id}>{roles.role}</MenuItem>)
-                                            })
-                                        }
+                                        {roles.map(roles => (
+                                            <MenuItem key={roles} value={roles.role}>
+                                                <Checkbox checked={this.state.newZonerole.indexOf(roles.role) > -1} />
+                                                <ListItemText primary={roles.role} />
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                                 <br/>

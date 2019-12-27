@@ -78,6 +78,15 @@ class User(db.Model):
             "role": self.role
         })
 
+    def json(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'password': self.password,
+            'role': self.role,
+            'role': self.role_id
+        }
+
     def username_password_match(_username, _password):
         user = User.query.filter_by(username=_username).filter_by(password=_password).first()
         if user is None:
@@ -93,6 +102,26 @@ class User(db.Model):
             return 200
         except:
             return 500
+
+    # def deleteUser(_username):
+    #     user = User.query.filter_by(username=_username).first()
+    #     print(user)
+    #     db.delete(user)
+    #     db.session.commit()
+
+    def deleteUser(_username):
+        if User.query.filter_by(username=_username).count() > 0:
+            try:
+                User.query.filter_by(username=_username).delete()
+                db.session.commit()
+                return 200
+            except:
+                return 500
+        else:
+            return 500
+
+    def GetAllUsers():
+        return [User.json(user) for user in User.query.all()]
 
     def getRole(_username):
         user = User.query.filter_by(username=_username).first()
@@ -113,5 +142,5 @@ class User(db.Model):
         except:
             return "user or password is wrong"
 
-    def deleteUser(_username):
-        User.query.filter_by(username=_username).delete()
+    # def deleteUser(_username):
+    #     User.query.filter_by(username=_username).delete()

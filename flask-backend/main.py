@@ -87,6 +87,29 @@ def createUser():
         return jsonify({"response": "add User failed"}), 500
 
 
+@app.route("/api/v1.0/deleteuser", methods=["POST"])
+@token_required
+def deleteUser():
+    request_data = request.get_json()
+    username = str(request_data["username"])
+    # msm = User.deleteUser(int(id))
+    # if msm == 200:
+    return jsonify({"data": User.deleteUser(username)})
+    # else:
+#     return jsonify({"data": "delete User failed"}), 500
+
+
+@app.route("/api/v1.0/getallusers", methods=["GET", "POST"])
+@token_required
+def getallusers():
+    # try:
+    return jsonify({"data": User.GetAllUsers()}), 200
+
+
+# except:
+#     return jsonify({"response": "delete User failed"}), 500
+
+
 @app.route("/api/v1.0/GetAllroles", methods=["GET", "POST"])
 # @token_required
 def GetAllroles():

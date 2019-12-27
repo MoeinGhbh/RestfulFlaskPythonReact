@@ -6,7 +6,7 @@ from flask_cors import CORS
 from settings import app
 from tinydb import TinyDB, Query
 from functools import wraps
-
+import json
 from userModel import *
 
 # data = TinyDB("data.json")
@@ -93,8 +93,7 @@ def getRolePerUser():
 def my_index():
     data = TinyDB("data.json")
     data = data.table("Zone")
-    data = data.all()
-    return jsonify({"data": data})
+    return jsonify({"data": data.all()})
 
 
 @app.route("/api/v1.0/perRoleHome", methods=["GET", "POST"])
@@ -145,6 +144,24 @@ def addZone():
         counter = len(data1) + 1
         data1.insert({"zoneId": counter, "zoneName": newZone, "accessLevel": role, "items": []})
         return "The zone successfully Added", 200
+
+
+@app.route("/api/v1.0/additems", methods=["GET", "POST"])
+@token_required
+def addIthems():
+    request_data = request.get_json()
+    zoneId = request_data["zoneId"]
+    newitems = request_data["eachZone.items"]
+    print(newitems)
+    print(zoneId)
+    data = TinyDB("data.json")
+    data = data.table("Zone")
+    query = Query()
+    try:
+        data.update({"items": newitems}, query.zoneId == zoneId)
+        return "ok", 200
+    except:
+        return "not ok", 500
 
 
 @app.route("/api/v1.0/changePassword", methods=["GET", "POST"])

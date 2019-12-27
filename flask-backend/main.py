@@ -60,6 +60,19 @@ def createnewrole():
         return jsonify("The role is exist"), 500
 
 
+@app.route("/api/v1.0/delrole", methods=["GET", "POST"])
+@token_required
+def deleterole():
+    request_data = request.get_json()
+    role = str(request_data["role"])
+    msm = Role.delrole(role)
+    print(msm)
+    if msm == 200:
+        return jsonify("Role Added"), 200
+    else:
+        return jsonify("The role is exist"), 500
+
+
 @app.route("/api/v1.0/createuser", methods=["POST"])
 @token_required
 def createUser():

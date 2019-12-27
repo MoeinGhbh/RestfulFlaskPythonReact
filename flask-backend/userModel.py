@@ -33,6 +33,17 @@ class Role(db.Model):
         else:
             return 500
 
+    def delrole(_newRole):
+        if Role.query.filter_by(role=_newRole).count() > 0:
+            try:
+                Role.query.filter_by(role=_newRole).delete()
+                db.session.commit()
+                return 200
+            except:
+                return 500
+        else:
+            return 500
+
     # def showallroles():
     #     p = (db.session.query(User)
     #          .options(db.eagerload(User.role))

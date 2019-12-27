@@ -4,6 +4,8 @@ import CreateUser from "../components/CreateUser";
 import CreateRole from "../components/CreateRole";
 import CreatePart from "../components/CreatePart";
 import CreateItemsofPart from "../components/CreateItemsofPart";
+import DeleteRole from "../components/DeleteRole";
+
 
 class Panel extends Component {
     constructor(props) {
@@ -19,6 +21,10 @@ class Panel extends Component {
                     <tr>
                         <td>
                             <CreateRole/>
+
+                        </td>
+                        <td>
+                            <DeleteRole />
                         </td>
                     </tr>
                     <tr>

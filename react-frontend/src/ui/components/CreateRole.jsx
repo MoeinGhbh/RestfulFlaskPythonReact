@@ -35,6 +35,8 @@ class CreateRole extends Component {
         }
     }
 
+
+
     render() {
         return (
             <div>
@@ -58,6 +60,7 @@ class CreateRole extends Component {
                         <td colSpan="2">
                             <Button type="button" variant="contained" color="secondary" onClick={this.addrole}>ذخیره</Button>
                         </td>
+
                     </tr>
                 </table>
             </div>

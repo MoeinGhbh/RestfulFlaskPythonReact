@@ -82,7 +82,6 @@ class CreatePart extends Component {
                         <td colSpan="2">
                             <label> اضافه کردن قسمت به خانه ی هوشمند </label>
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>

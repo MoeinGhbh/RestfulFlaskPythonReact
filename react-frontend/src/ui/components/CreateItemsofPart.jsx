@@ -42,32 +42,20 @@ class CreateItemsofPart extends Component {
                 let countofitems = eachZone.items.length
                 let blankFind = false
 
-                console.log('countofitems', countofitems);
-
-
                 for (i; i < countofitems + 1; i++) {
-
-
                     eachZone.items.map(ListItems => {
-                        console.log('ListItems.itemId', ListItems.itemId);
-                        console.log('i', i);
                         if (i == ListItems.itemId) {
                             find = true
-                            console.log('find = true', find = true);
                         }
                     })
                     if (find == false) {
-
                         LastIndex = i
-                        console.log('to list nabod', LastIndex);
                         blankFind = true
                     } else {
                         find = false
                     }
                 }
-                console.log('find', find);
                 if (blankFind == false) {
-                    console.log('LastIndex = index + 1', countofitems + 1);
                     LastIndex = countofitems + 1
                 }
                 eachZone.items.push({
@@ -76,9 +64,6 @@ class CreateItemsofPart extends Component {
                     itemName: itemName,
                     status: true
                 })
-
-                console.log(eachZone.items);
-
                 axios.post('http://127.0.0.1:5000/api/v1.0/additems?token=' + localStorage.getItem('LStoken'),
                     {
                         'eachZone.items': eachZone.items,
@@ -105,7 +90,7 @@ class CreateItemsofPart extends Component {
                         <td colSpan="2">
                             <label> اضافه کردن اقلام به خانه ی هوشمند </label>
                         </td>
-                        <td></td>
+
                     </tr>
 
                     <tr>

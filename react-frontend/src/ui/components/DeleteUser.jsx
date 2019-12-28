@@ -93,7 +93,7 @@ class CreateUser extends Component {
                     <tr>
                         <td colSpan="2">
                             <Button type="button" variant="contained" color="secondary"
-                                    onClick={this.deletetUserPass}>ذخیره</Button>
+                                    onClick={this.deletetUserPass}>حذف</Button>
 
                         </td>
                     </tr>

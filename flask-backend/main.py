@@ -9,7 +9,7 @@ from functools import wraps
 import json
 from userModel import *
 
-# from tinydb.operations import delete
+from tinydb.operations import delete
 
 # data = TinyDB("data.json")
 # table = data.table("Zone")
@@ -190,23 +190,15 @@ def addZone():
 @token_required
 def delZone():
     request_data = request.get_json()
-    ZoneId = request_data["ZoneId"]
-    zoneName = request_data["zoneName"]
+    zoneId = request_data["zoneId"]
     data1 = TinyDB("data.json")
-    data1 = data1.table("Zone")
+    data2 = data1.table("Zone")
     query = Query()
     try:
-        # data1.update(delete('key1'), User.name == 'John')
-        data1.remove(ZoneId=ZoneId)
-        return 200
+        data2.remove(query.zoneId == zoneId)
+        return "ok", 200
     except:
-        return 500
-    # if data1.count(query.zoneName == newZone) > 0:
-    #     return "the Zone is exist", 500
-    # else:
-    #     counter = len(data1) + 1
-    #     data1.insert({"zoneId": counter, "zoneName": newZone, "accessLevel": role, "items": []})
-    #     return "The zone successfully Added", 200
+        return "not ok", 500
 
 
 @app.route("/api/v1.0/additems", methods=["GET", "POST"])

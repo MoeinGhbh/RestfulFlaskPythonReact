@@ -17,7 +17,6 @@ class CreatePart extends Component {
         this.state = {
             checkState: false,
             Zones: [],
-            zoneName: '',
             ZoneId: ''
 
         }
@@ -39,16 +38,15 @@ class CreatePart extends Component {
     }
 
     deleteZone = (e) => {
-        const {newZone, zoneId} = this.state
-        axios.post("http://127.0.0.1:5000/api/v1.0/deleteZone?token=" + localStorage.getItem("LStoken"),
+        const {zoneName, zoneId} = this.state
+        axios.post("http://127.0.0.1:5000/api/v1.0/delZone?token=" + localStorage.getItem("LStoken"),
             {
-                "newZone": newZone,
                 "zoneId": zoneId
             })
             .then(res => {
                     if (res.status == 200) {
+                        this.componentDidMount()
                         alert('قسمت با موفقیت حذف گردید')
-
                     }
                 }
             )
@@ -125,7 +123,7 @@ class CreatePart extends Component {
                         </td>
                         <td>
                             <Button variant="contained" color="secondary"
-                                    onClick={this.deleteZone}> ذخیره</Button>
+                                    onClick={this.deleteZone}> حذف</Button>
                         </td>
                     </tr>
                 </table>

@@ -57,10 +57,10 @@ class CreatePart extends Component {
             })
             .then(res => {
                     if (res.status == 200) {
-                        this.componentDidMount()
+                        // this.componentDidMount()
                         alert('قسمت با موفقیت اضافه گردید')
                         this.setState({newZone: ""})
-                        this.setState({newZonerole: ""})
+                        this.setState({newZonerole: []})
                     }
                 }
             )

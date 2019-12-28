@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {distancArray} from "../../Helper";
 import FormControl from "@material-ui/core/FormControl";
 
-class CreateUser extends Component {
+class DeleteUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -103,4 +103,4 @@ class CreateUser extends Component {
     }
 }
 
-export default CreateUser;
+export default DeleteUser;

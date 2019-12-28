@@ -6,7 +6,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 
-class CreateRole extends Component {
+class DeleteRole extends Component {
     constructor() {
         super();
         this.state = {role: '', roles: []}
@@ -92,7 +92,7 @@ class CreateRole extends Component {
 
                     <tr>
                         <td colSpan="2">
-                            <Button type="buttonn " variant="contained" color="secondary"
+                            <Button type="button " variant="contained" color="secondary"
                                     onClick={this.delrole}>حذف</Button>
                         </td>
 
@@ -104,4 +104,4 @@ class CreateRole extends Component {
 
 }
 
-export default CreateRole;
+export default DeleteRole;

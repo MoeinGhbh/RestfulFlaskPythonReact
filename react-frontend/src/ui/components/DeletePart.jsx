@@ -11,7 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from '@material-ui/core/Input';
 
-class CreatePart extends Component {
+class DeletePart extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -133,4 +133,4 @@ class CreatePart extends Component {
 
 }
 
-export default CreatePart;
+export default DeletePart;

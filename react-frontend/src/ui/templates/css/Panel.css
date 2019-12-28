@@ -1,15 +1,5 @@
-.divMain{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-/* div{
+divMain{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-   
-} */
+}

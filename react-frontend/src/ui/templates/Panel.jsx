@@ -7,6 +7,7 @@ import CreateItemsofPart from "../components/CreateItemsofPart";
 import DeleteRole from "../components/DeleteRole";
 import DeleteUser from "../components/deleteUser";
 import DeletePart from "../components/DeletePart"
+import DeleteItemsofPart from "../components/DeleteItemsofPart"
 
 class Panel extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Panel extends Component {
 
                         </td>
                         <td>
-                            <DeleteRole />
+                            <DeleteRole/>
                         </td>
                     </tr>
                     <tr>
@@ -33,42 +34,37 @@ class Panel extends Component {
                             <CreateUser/>
                         </td>
                         <td>
-                            <DeleteUser />
+                            <DeleteUser/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <CreatePart />
+                            <CreatePart/>
                         </td>
                         <td>
-                            <DeletePart />
+                            <DeletePart/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <CreateItemsofPart/>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <div className="divMain">
+                                <DeleteItemsofPart/>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <CreateItemsofPart />
+                            <label>.                                                  .</label>
                         </td>
                     </tr>
                 </table>
-                {/*{*/}
-                {/*    data.map(rr => {*/}
-                {/*        console.log(rr)*/}
-                {/*    })*/}
-                {/*}*/}
-                {/*<div id="Zones">*/}
-                {/*    /!* <h2>{data.navigation.content}</h2> *!/*/}
-                {/*    {data.map(Zone => {*/}
-                {/*        return (*/}
-                {/*            <div id="Zone">*/}
-                {/*                <ZoneCardEdit*/}
-                {/*                    content={Zone.zoneName}*/}
-                {/*                    items={Zone.items}*/}
-                {/*                    className="card"*/}
-                {/*                />*/}
-                {/*            </div>*/}
-                {/*        );*/}
-                {/*    })}*/}
-                {/*</div>*/}
+
             </div>
         );
     }

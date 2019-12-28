@@ -201,6 +201,23 @@ def delZone():
         return "not ok", 500
 
 
+@app.route("/api/v1.0/delZoneItem", methods=["POST"])
+@token_required
+def delZoneItem():
+    request_data = request.get_json()
+    zoneId = request_data["zoneId"]
+    items = request_data["items"]
+
+    data = TinyDB("data.json")
+    data = data.table("Zone")
+    query = Query()
+    try:
+        data.update({"items": items}, query.zoneId == zoneId)
+        return "ok", 200
+    except:
+        return "not ok", 500
+
+
 @app.route("/api/v1.0/additems", methods=["GET", "POST"])
 @token_required
 def addIthems():

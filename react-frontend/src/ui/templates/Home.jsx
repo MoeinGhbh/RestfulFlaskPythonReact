@@ -53,7 +53,7 @@ class Home extends Component {
 
     render() {
         const {data, handler, history} = this.props;
-        console.log(history.location.state)
+        //console.log(history.location.state)
         return (
             <div class="container-fluid">
                 <h1>BMS</h1>

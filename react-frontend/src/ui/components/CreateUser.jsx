@@ -47,6 +47,7 @@ class CreateUser extends Component {
                 }
             ).then(resu => {
                 if (resu.status == 200) {
+                    this.componentDidMount()
                     alert("نام کاربری با موفقیت ثبت گردید")
                 }
             })
@@ -107,6 +108,7 @@ class CreateUser extends Component {
                                     id="demo-simple-select"
                                     value={this.state.roleId}
                                     onChange={this.addName}
+                                    name="roleId"
                                 >
                                     <MenuItem value="">
                                         <em>None</em>

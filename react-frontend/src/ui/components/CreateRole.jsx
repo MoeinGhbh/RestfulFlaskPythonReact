@@ -18,6 +18,7 @@ class CreateRole extends Component {
             axios.post('http://127.0.0.1:5000/api/v1.0/addrole?token=' + localStorage.getItem('LStoken'), {'role': role})
                 .then(res => {
                     if (res.status == 200) {
+                        this.componentDidMount()
                         console.log(res.status);
                         alert('نقش با نوفقیت ثبت شد')
                     }

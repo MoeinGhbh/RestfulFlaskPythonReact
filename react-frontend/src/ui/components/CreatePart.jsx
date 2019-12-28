@@ -10,6 +10,7 @@ import axios from "axios";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from '@material-ui/core/Input';
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -20,6 +21,7 @@ const MenuProps = {
         },
     },
 };
+
 class CreatePart extends Component {
     constructor(props) {
         super(props)
@@ -55,9 +57,10 @@ class CreatePart extends Component {
             })
             .then(res => {
                     if (res.status == 200) {
+                        this.componentDidMount()
                         alert('قسمت با موفقیت اضافه گردید')
-                        this.setState({newZone:""})
-                        this.setState({newZonerole:""})
+                        this.setState({newZone: ""})
+                        this.setState({newZonerole: ""})
                     }
                 }
             )
@@ -110,7 +113,7 @@ class CreatePart extends Component {
                                 نقش را انتخاب نمایید :
 
 
-                                <FormControl >
+                                <FormControl>
                                     <br/>
                                     <InputLabel id="lblRole">نقش</InputLabel>
                                     <br/>
@@ -124,14 +127,14 @@ class CreatePart extends Component {
                                         onChange={this.updateState}
                                         name="newZonerole"
                                         multiple
-                                        input={<Input />}
+                                        input={<Input/>}
                                         renderValue={selected => selected.join(', ')}
                                         MenuProps={MenuProps}
                                     >
                                         {roles.map(roles => (
                                             <MenuItem key={roles} value={roles.role}>
-                                                <Checkbox checked={this.state.newZonerole.indexOf(roles.role) > -1} />
-                                                <ListItemText primary={roles.role} />
+                                                <Checkbox checked={this.state.newZonerole.indexOf(roles.role) > -1}/>
+                                                <ListItemText primary={roles.role}/>
                                             </MenuItem>
                                         ))}
                                     </Select>

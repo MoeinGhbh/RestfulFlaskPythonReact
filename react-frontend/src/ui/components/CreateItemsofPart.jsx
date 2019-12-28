@@ -71,6 +71,7 @@ class CreateItemsofPart extends Component {
                     }
                 ).then(res => {
                     if (res.status == 200) {
+                        this.componentDidMount()
                         alert('تجهیز با موفقیت ثبت شد')
                     }
                 }).catch(resllt => {

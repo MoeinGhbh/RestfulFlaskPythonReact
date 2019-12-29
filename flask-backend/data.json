@@ -1,1 +1,58 @@
-{"Zone": {"1": {"zoneId": 1, "zoneName": "TV Room", "accessLevel": ["admin", "Parent"], "items": [{"group": "Aircondition", "itemId": 3, "itemName": "kkkyudtikyu", "status": true}, {"group": "Socket", "itemId": 2, "itemName": "oioioio", "status": false}, {"group": "Socket", "itemId": 4, "itemName": "oioioio", "status": false}, {"group": "Socket", "itemId": 5, "itemName": "oioioio", "status": true}, {"group": "Socket", "itemId": 6, "itemName": "oioioio", "status": false}, {"group": "Aircondition", "itemId": 7, "itemName": "asfasedf", "status": false}, {"group": "Socket", "itemId": 1, "itemName": "zadfgx", "status": true}]}, "2": {"zoneId": 2, "zoneName": "Kitchen", "accessLevel": "Parent", "items": [{"group": "lamp", "itemId": 1, "itemName": "Halogen", "status": true}]}, "3": {"zoneId": 3, "zoneName": "Room", "accessLevel": "child", "items": [{"group": "lamp", "itemId": 1, "itemName": "Halogen", "status": true}, {"group": "lamp", "itemId": 2, "itemName": "Halogen", "status": false}, {"group": "Curtains", "itemId": 3, "itemName": "right", "status": true}, {"group": "socket", "itemId": 4, "itemName": "main socket", "status": false}]}, "4": {"zoneId": 4, "zoneName": "", "accessLevel": ["gholi", "parent", "admin"], "items": []}}, "_default": {}}
+{
+  "Zone": {
+    "1": {
+      "zoneId": 1,
+      "zoneName": "TV Room",
+      "accessLevel": [
+        "admin",
+        "parent"
+      ],
+      "items": [
+        {
+          "group": "Lamp",
+          "itemId": 1,
+          "itemName": "aaaaa",
+          "status": true
+        },
+        {
+          "group": "Socket",
+          "itemId": 2,
+          "itemName": "ssss",
+          "status": false
+        },
+        {
+          "group": "Lamp",
+          "itemId": 3,
+          "itemName": "liuhph8o",
+          "status": true
+        }
+      ]
+    },
+    "2": {
+      "zoneId": 2,
+      "zoneName": "Kitchen",
+      "accessLevel": "parent",
+      "items": [
+        {
+          "group": "Socket",
+          "itemId": 1,
+          "itemName": "awsgsadfg",
+          "status": true
+        },
+        {
+          "group": "Lamp",
+          "itemId": 2,
+          "itemName": "zadfsz",
+          "status": true
+        }
+      ]
+    },
+    "3": {
+      "zoneId": 3,
+      "zoneName": "Room",
+      "accessLevel": "child",
+      "items": []
+    }
+  },
+  "_default": {}
+}

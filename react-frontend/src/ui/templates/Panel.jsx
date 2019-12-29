@@ -46,21 +46,21 @@ class Panel extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td>
                             <CreateItemsofPart/>
                         </td>
-
-                    </tr>
-                    <tr>
-                        <td colSpan="2">
-                            <div className="divMain">
-                                <DeleteItemsofPart/>
-                            </div>
+                        <td>
+                            <DeleteItemsofPart/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>.                                                  .</label>
+                            <label>بازگشا به صحه ی اصلی</label>
+                        </td>
+                        <td>
+                            <label>
+                                {/*<Button onClick={this.props.push} />*/}
+                            </label>
                         </td>
                     </tr>
                 </table>

@@ -8,17 +8,25 @@ export default class ZoneSection extends Component {
     render() {
         const {data, handler} = this.props;
         return (
-            <div id="Zones">
-                {data.map((Zone, index) => {
-                    return <div id="Zone"><h2> {Zone.zoneName} </h2>   <ZoneCard zoneIndex={index}
-                                                                                 zoneName={Zone.zoneName}
-                                                                                 items={Zone.items}
-                                                                                 handler={handler}
-                                                                                 zoneId={Zone.zoneId}
-                                                                                 className="card"/>
 
-                    </div>;
-                })}
+
+            <div id="Zones">
+                {
+                    data.map((Zone, index) => {
+                     if(Zone.items.length>0) {
+                         return (<div id="Zone"><h2> {Zone.zoneName} </h2>   <ZoneCard zoneIndex={index}
+                                                                                       zoneName={Zone.zoneName}
+                                                                                       items={Zone.items}
+                                                                                       handler={handler}
+                                                                                       zoneId={Zone.zoneId}
+                                                                                       className="card"/>
+
+                         </div>)
+                     }else{
+                         return ""
+                     }
+                })
+                }
             </div>
         );
     }

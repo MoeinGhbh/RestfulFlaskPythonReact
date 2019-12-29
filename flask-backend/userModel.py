@@ -33,10 +33,10 @@ class Role(db.Model):
         else:
             return 500
 
-    def delrole(_newRole):
-        if Role.query.filter_by(role=_newRole).count() > 0:
+    def delrole(_Role):
+        if Role.query.filter_by(id=_Role).count() > 0:
             try:
-                Role.query.filter_by(role=_newRole).delete()
+                Role.query.filter_by(id=_Role).delete()
                 db.session.commit()
                 return 200
             except:

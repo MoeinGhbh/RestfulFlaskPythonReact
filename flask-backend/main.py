@@ -148,7 +148,9 @@ def perRoleHome():
     if role == "admin":
         return jsonify({"data": data.all()})
     else:
-        return jsonify({"data": data.search(query.accessLevel == role)})
+        # db.search(User.groups.any(['admin', 'sudo']))
+        return data.search(query.groups.any(['admin', 'sudo']))
+        # return jsonify({"data": data.search(query.accessLevel == role)})
 
 
 @app.route("/api/v1.0/update", methods=["POST"])
@@ -207,7 +209,6 @@ def delZoneItem():
     request_data = request.get_json()
     zoneId = request_data["zoneId"]
     items = request_data["items"]
-
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()

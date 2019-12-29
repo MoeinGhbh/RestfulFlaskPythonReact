@@ -9,8 +9,8 @@ import {string} from "prop-types";
 import ZoneCardEdit from "../components/Zones/ZoneCardEdit"
 
 class DeleteItemsofPart extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             Zones: [],
             zoneId: '',
@@ -31,56 +31,64 @@ class DeleteItemsofPart extends Component {
         })
     }
 
-    AddItems = event => {
-        const {group, itemName, zoneId, Zones} = this.state;
-        Zones.map(eachZone => {
-            if (eachZone.zoneId == zoneId) {
-
-                let i = 1
-                let find = false
-                let LastIndex = 0
-                let countofitems = eachZone.items.length
-                let blankFind = false
-
-                for (i; i < countofitems + 1; i++) {
-                    eachZone.items.map(ListItems => {
-                        if (i == ListItems.itemId) {
-                            find = true
-                        }
-                    })
-                    if (find == false) {
-                        LastIndex = i
-                        blankFind = true
-                    } else {
-                        find = false
-                    }
-                }
-                if (blankFind == false) {
-                    LastIndex = countofitems + 1
-                }
-                eachZone.items.push({
-                    group: group,
-                    itemId: LastIndex,
-                    itemName: itemName,
-                    status: true
-                })
-                axios.post('http://127.0.0.1:5000/api/v1.0/additems?token=' + localStorage.getItem('LStoken'),
-                    {
-                        'eachZone.items': eachZone.items,
-                        'zoneId': zoneId
-                    }
-                ).then(res => {
-                    if (res.status == 200) {
-                        this.componentDidMount()
-                        alert('تجهیز با موفقیت ثبت شد')
-                    }
-                }).catch(resllt => {
-                    alert('تجیز ثبت نگردید')
-                })
-            }
+    handledata(){
+        axios.post('http://127.0.0.1:5000/api/v1.0/allHome?token=' + localStorage.getItem('LStoken'))
+            .then(res => {
+                this.setState({Zones: res.data.data})
+            }).catch(resl => {
+            this.props.history.push("/")
         })
     }
 
+    // AddItems = () => {
+    //     const {group, itemName, zoneId, Zones} = this.state;
+    //     Zones.map(eachZone => {
+    //         if (eachZone.zoneId == zoneId) {
+    //
+    //             let i = 1
+    //             let find = false
+    //             let LastIndex = 0
+    //             let countofitems = eachZone.items.length
+    //             let blankFind = false
+    //
+    //             for (i; i < countofitems + 1; i++) {
+    //                 eachZone.items.map(ListItems => {
+    //                     if (i == ListItems.itemId) {
+    //                         find = true
+    //                     }
+    //                 })
+    //                 if (find == false) {
+    //                     LastIndex = i
+    //                     blankFind = true
+    //                 } else {
+    //                     find = false
+    //                 }
+    //             }
+    //             if (blankFind == false) {
+    //                 LastIndex = countofitems + 1
+    //             }
+    //             eachZone.items.push({
+    //                 group: group,
+    //                 itemId: LastIndex,
+    //                 itemName: itemName,
+    //                 status: true
+    //             })
+    //             axios.post('http://127.0.0.1:5000/api/v1.0/additems?token=' + localStorage.getItem('LStoken'),
+    //                 {
+    //                     'eachZone.items': eachZone.items,
+    //                     'zoneId': zoneId
+    //                 }
+    //             ).then(res => {
+    //                 if (res.status == 200) {
+    //                     this.componentDidMount()
+    //                     alert('تجهیز با موفقیت ثبت شد')
+    //                 }
+    //             }).catch(resllt => {
+    //                 alert('تجیز ثبت نگردید')
+    //             })
+    //         }
+    //     })
+    // }
 
     render() {
         const {Zones} = this.state
@@ -91,9 +99,7 @@ class DeleteItemsofPart extends Component {
                         <td colSpan="2">
                             <label> اضافه کردن اقلام به خانه ی هوشمند </label>
                         </td>
-
                     </tr>
-
                     <tr>
                         <td>
                             <label>قسمت خانه را انتخاب نمایید.</label>
@@ -113,18 +119,15 @@ class DeleteItemsofPart extends Component {
                                     </MenuItem>
                                     {
                                         Zones.map(zone => {
-
                                             return <MenuItem
                                                 value={zone.zoneId}>{zone.zoneName}
                                             </MenuItem>
                                         })
                                     }
-
                                 </Select>
                             </FormControl>
                         </td>
                     </tr>
-
                     <tr>
                         <td>
                             {this.state.zoneId != "" ?
@@ -137,7 +140,7 @@ class DeleteItemsofPart extends Component {
                                                     content={Zone.zoneName}
                                                     items={Zone.items}
                                                     zoneId={Zone.zoneId}
-                                                    handleData={this.componentDidMount}
+                                                    handledata={this.handledata}
                                                     className="card"
                                                 />
                                             </div>

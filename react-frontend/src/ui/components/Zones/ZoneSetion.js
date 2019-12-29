@@ -13,7 +13,7 @@ export default class ZoneSection extends Component {
             <div id="Zones">
                 {
                     data.map((Zone, index) => {
-                     if(Zone.items.length>0) {
+                     // if(Zone.items.length>0) {
                          return (<div id="Zone"><h2> {Zone.zoneName} </h2>   <ZoneCard zoneIndex={index}
                                                                                        zoneName={Zone.zoneName}
                                                                                        items={Zone.items}
@@ -22,9 +22,9 @@ export default class ZoneSection extends Component {
                                                                                        className="card"/>
 
                          </div>)
-                     }else{
-                         return ""
-                     }
+                     // }else{
+                     //     return ""
+                     // }
                 })
                 }
             </div>

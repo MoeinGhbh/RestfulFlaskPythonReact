@@ -14,6 +14,7 @@ class Home extends Component {
         }
         this.handler = this.handler.bind(this);
         const myRole = localStorage.getItem("LSrole")
+        console.log(myRole);
         const myToken = localStorage.getItem("LStoken")
     }
 

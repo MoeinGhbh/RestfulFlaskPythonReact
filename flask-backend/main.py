@@ -144,13 +144,11 @@ def perRoleHome():
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()
-    # print(data.search(query.accessLevel == role))
+    print(role)
     if role == "admin":
         return jsonify({"data": data.all()})
     else:
-        # db.search(User.groups.any(['admin', 'sudo']))
-        return data.search(query.groups.any(['admin', 'sudo']))
-        # return jsonify({"data": data.search(query.accessLevel == role)})
+        return jsonify({"data": data.search(query.accessLevel.any([role]))})
 
 
 @app.route("/api/v1.0/update", methods=["POST"])

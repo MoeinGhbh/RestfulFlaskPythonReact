@@ -28,6 +28,10 @@ class ChangePassword extends Component {
         });
     }
 
+    handleClick = () => {
+        this.props.history.push("/Home")
+    }
+
     render() {
         return (
             <div>
@@ -55,6 +59,13 @@ class ChangePassword extends Component {
                         <td>
                             <Button onClick={this.changePassword}> تغییر رمز ورود </Button>
                         </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <label>بازگشت به صفحه ی اصلی</label>
+                            <Button onClick={this.handleClick}> بازگشت </Button>
+                        </td>
+
                     </tr>
                 </table>
             </div>

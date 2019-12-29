@@ -8,11 +8,16 @@ import DeleteRole from "../components/DeleteRole";
 import DeleteUser from "../components/deleteUser";
 import DeletePart from "../components/DeletePart"
 import DeleteItemsofPart from "../components/DeleteItemsofPart"
+import {Button} from "react-bootstrap";
 
 class Panel extends Component {
     constructor(props) {
         super(props);
         const myToken = localStorage.getItem("LStoken")
+    }
+
+    handleClick = () => {
+        this.props.history.push("/Home")
     }
 
     render() {
@@ -54,14 +59,15 @@ class Panel extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <label>بازگشا به صحه ی اصلی</label>
+                        <td colSpan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <label>بازگشت به صفحه ی اصلی</label>
+                            <Button onClick={this.handleClick}> بازگشت </Button>
                         </td>
-                        <td>
-                            <label>
-                                {/*<Button onClick={this.props.push} />*/}
-                            </label>
-                        </td>
+
                     </tr>
                 </table>
 

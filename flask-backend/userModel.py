@@ -22,7 +22,11 @@ class Role(db.Model):
         return json.dumps(json_role_table)
 
     def createnewrole(_newRole):
-        if Role.query.filter_by(role=_newRole).count() == 0:
+        print(_newRole)
+        print(Role.query.filter_by(role=_newRole).count())
+        if Role.query.filter_by(role=_newRole).count() > 0:
+            return 500
+        else:
             try:
                 new_role = Role(role=_newRole)
                 db.session.add(new_role)
@@ -30,18 +34,17 @@ class Role(db.Model):
                 return 200
             except:
                 return 500
-        else:
-            return 500
 
     def delrole(_Role):
-        if Role.query.filter_by(id=_Role).count() > 0:
-            try:
+        try:
+            print(User.query.filter_by(id=_Role).count())
+            if User.query.filter_by(id=_Role).count() == 0:
                 Role.query.filter_by(id=_Role).delete()
                 db.session.commit()
                 return 200
-            except:
-                return 500
-        else:
+            else:
+                return 900
+        except:
             return 500
 
     # def showallroles():
@@ -103,12 +106,6 @@ class User(db.Model):
         except:
             return 500
 
-    # def deleteUser(_username):
-    #     user = User.query.filter_by(username=_username).first()
-    #     print(user)
-    #     db.delete(user)
-    #     db.session.commit()
-
     def deleteUser(_username):
         if User.query.filter_by(username=_username).count() > 0:
             try:
@@ -142,5 +139,21 @@ class User(db.Model):
         except:
             return "user or password is wrong"
 
-    # def deleteUser(_username):
-    #     User.query.filter_by(username=_username).delete()
+
+class Equipment(db.Model):
+    __tableName__ = "Equipment"
+    id = db.Column(db.Integer, primary_key=True)
+    Equipment = db.Column(db.String(120), nullable=False)
+
+    def json(self):
+        return {'id': self.id, 'Equipment': self.Equipment}
+
+    def __repr__(self):
+        json_Equipment_table = {
+            "id": self.id,
+            "Equipment": self.Equipment
+        }
+        return json.dumps(json_Equipment_table)
+
+    def showall():
+        return [Equipment.json(eqpt) for eqpt in Equipment.query.all()]

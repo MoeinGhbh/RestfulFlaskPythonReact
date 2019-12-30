@@ -34,13 +34,14 @@ class DeleteRole extends Component {
                 {'role': role})
                 .then(res => {
                     if (res.status == 200) {
-                        console.log(res.status);
+                        //onsole.log(res.status);
                         this.componentDidMount()
                         alert('نقش با نوفقیت حذف گردید')
-
+                        this.setState({role: ''})
+                        this.setState({roles: []})
                     }
                     if (res.status == 500) {
-                        console.log(res.status);
+                        //console.log(res.status);
                         alert('نقش وجود ندارد')
                     }
                 })
@@ -82,7 +83,7 @@ class DeleteRole extends Component {
                                     {
                                         roles.map(role => {
                                             return <MenuItem
-                                                value={role.role}>{role.role}</MenuItem>
+                                                value={role.id}>{role.role}</MenuItem>
                                         })
                                     }
                                 </Select>

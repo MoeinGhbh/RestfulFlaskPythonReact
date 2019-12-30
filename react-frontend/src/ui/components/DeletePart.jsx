@@ -64,7 +64,7 @@ class DeletePart extends Component {
 
     render() {
         const {Zones} = this.state;
-        console.log('Zonessss', Zones);
+        //console.log('Zonessss', Zones);
         return (
             <div>
                 <table>

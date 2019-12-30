@@ -8,6 +8,7 @@ from tinydb import TinyDB, Query
 from functools import wraps
 import json
 from userModel import *
+from UART import *
 
 from tinydb.operations import delete
 
@@ -71,8 +72,8 @@ def deleterole():
     print(msm)
     if msm == 200:
         return jsonify("Role Added"), 200
-    else:
-        return jsonify("The role is exist"), 500
+    else :
+        return jsonify("the role is used for users"), 500
 
 
 @app.route("/api/v1.0/createuser", methods=["POST"])
@@ -166,6 +167,22 @@ def update_status():
     query = Query()
     data1.update({"items": dataitem}, query.zoneId == zoneId)
     return jsonify({"data": data1.all()})
+
+
+@app.route("/api/v1.0/sentoboard", methods=["POST"])
+# @token_required
+def sentoboard():
+    request_data = request.get_json()
+    zoneId = request_data["zoneId"]
+    group = request_data["group"]
+    itemId = request_data["itemId"]
+    status = request_data["status"]
+    print(zoneId)
+    print(group)
+    print(itemId)
+    print(status)
+    UART.sendtoBoard(zoneId, group, itemId, status)
+    return jsonify({"data": "ok"})
 
 
 @app.route("/api/v1.0/addZone", methods=["POST"])

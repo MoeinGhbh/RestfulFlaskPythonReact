@@ -14,7 +14,7 @@ class DeleteItemsofPart extends Component {
         this.state = {
             Zones: [],
             zoneId: ''
-            ,items: []
+            , items: []
         }
     }
 
@@ -30,21 +30,6 @@ class DeleteItemsofPart extends Component {
             this.props.history.push("/")
         })
     }
-
-    reloadhandledata(){
-
-        console.log('reloadhandledata');
-        axios.post('http://127.0.0.1:5000/api/v1.0/allHome?token=' + localStorage.getItem('LStoken'))
-            .then(res => {
-                // console.log('res',res);
-                // console.log('res',res.data.data);
-                this.setState({Zones: res.data.data})
-            })
-    }
-
-
-
-
 
     render() {
         const {Zones} = this.state
@@ -90,7 +75,7 @@ class DeleteItemsofPart extends Component {
 
                                 Zones.map(Zone => {
                                     // if (Zone.zoneId == this.state.zoneId & Zone.items !== [])  {
-                                    if (Zone.zoneId == this.state.zoneId )  {
+                                    if (Zone.zoneId == this.state.zoneId) {
 
                                         return (
                                             <div id="Zone">

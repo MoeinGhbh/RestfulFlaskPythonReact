@@ -259,12 +259,16 @@ def changePassword():
     username = str(request_data["username"])
     oldPassword = str(request_data["oldPassword"])
     newPassword = str(request_data["newPassword"])
-    # print(username)
-    # print(oldPassword)
-    # print(newPassword)
     msg = User.changePassword(username, oldPassword, newPassword)
     return msg
 
+
+@app.route("/api/v1.0/adminChangePassword", methods=["GET", "POST"])
+def adminChangePassword():
+    request_data = request.get_json()
+    newPassword = str(request_data["newPassword"])
+    msg = User.adminChangePassword(newPassword)
+    return msg
 
 @app.errorhandler(404)
 def page_not_found(e):

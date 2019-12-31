@@ -48,7 +48,8 @@ class login extends Component {
     }
 
     routChangeBack() {
-        this.props.history.push("/");
+        //this.props.history.push("/");
+        alert('با مدیر نرم افزار تماس بگیرید')
     }
 
     render() {

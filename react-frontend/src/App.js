@@ -6,6 +6,7 @@ import Home from './ui/templates/Home';
 import Login from './ui/templates/Login';
 import Panel from './ui/templates/Panel';
 import ChangePassword from './ui/templates/ChangePassword';
+import adminChangePassword from './ui/components/adminChangePassword';
 
 
 //function App() {
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route path="/Home" component={Home}/>
                         <Route path="/Panel" component={Panel}/>
                         <Route path="/ChangePassword" component={ChangePassword}/>
+                        <Route path="/adminChangePassword" component={adminChangePassword}/>
                     </Switch>
                 </BrowserRouter>
                 {/*<header className="App-header">*/}

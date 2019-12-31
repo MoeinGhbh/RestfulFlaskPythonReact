@@ -139,6 +139,15 @@ class User(db.Model):
         except:
             return "user or password is wrong"
 
+    def otherUserChangePassword(_username, _newPassword):
+        try:
+            aa = User.query.filter_by(username=_username).first()
+            aa.password = _newPassword
+            db.session.commit()
+            return "tha password successfully changed"
+        except:
+            return "user or password is wrong"
+
     def adminChangePassword(_newPassword):
         try:
             aa = User.query.filter_by(username='admin').first()

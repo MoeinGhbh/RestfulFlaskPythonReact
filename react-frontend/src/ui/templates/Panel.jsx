@@ -9,6 +9,7 @@ import DeleteUser from "../components/deleteUser";
 import DeletePart from "../components/DeletePart"
 import DeleteItemsofPart from "../components/DeleteItemsofPart"
 import {Button} from "react-bootstrap";
+import ChangeotherUserPassword from "../components/ChangeotherUserPassword"
 
 class Panel extends Component {
     constructor(props) {
@@ -56,6 +57,11 @@ class Panel extends Component {
                         </td>
                         <td>
                             <DeleteItemsofPart/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <ChangeotherUserPassword/>
                         </td>
                     </tr>
                     <tr>

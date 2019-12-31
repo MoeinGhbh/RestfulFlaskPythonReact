@@ -263,6 +263,16 @@ def changePassword():
     return msg
 
 
+@app.route("/api/v1.0/otherUserChangePassword", methods=["GET", "POST"])
+@token_required
+def otherUserChangePassword():
+    request_data = request.get_json()
+    userName = str(request_data["userName"])
+    newPassword = str(request_data["newPassword"])
+    msg = User.otherUserChangePassword(userName, newPassword)
+    return msg
+
+
 @app.route("/api/v1.0/adminChangePassword", methods=["GET", "POST"])
 def adminChangePassword():
     request_data = request.get_json()

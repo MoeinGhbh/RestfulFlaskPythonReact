@@ -58,7 +58,7 @@ class ZoneCardEdit extends Component {
                                     <table>
                                         <tr>
                                             <td>
-                                                <label>{Item.itemName}</label>
+                                                <label>{Item.itemName}  {Item.group}</label>
                                             </td>
                                             <td>
                                                 <Button

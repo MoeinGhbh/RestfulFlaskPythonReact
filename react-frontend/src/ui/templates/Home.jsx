@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigator from "../components/Navigator/Navigation";
 import "./css/Home.css";
 import ZoneSection from "../components/Zones/ZoneSetion";
-import img from "../img/BMS.jpg";
+import img from "../../favicon.png";
 
 class Home extends Component {
     constructor(props) {
@@ -54,17 +54,34 @@ class Home extends Component {
 
     render() {
         const {data, handler, history} = this.props;
-        //console.log(history.location.state)
         return (
-            <div class="container-fluid">
-                <h1>BMS</h1>
-                <p> Building Management System is way to make smart homes</p>
-                <Navigator data={this.state.data} handler={this.handler}/>
-                <br/>
-                {/* <div className="icone" id="icone">
-                        <img src={img} alt="" className="img" />
-                </div>  */}
-                <ZoneSection data={this.state.data} handler={this.handler}/>
+            <div className="firstdiv">
+                <table className="tblHome">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <img id="img" src={img} alt="" className="img"/>
+                        </td>
+                        <td>
+                            <div id="bmsdiv">
+                                <h1>BMS</h1>
+                                <p> Building Management System is way to make smart homes</p>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colSpan="4">
+                            <Navigator data={this.state.data} handler={this.handler}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="4">
+                            <ZoneSection data={this.state.data} handler={this.handler}/>
+                        </td>
+                    </tr>
+                </table>
             </div>
         );
     }

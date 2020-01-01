@@ -1,3 +1,13 @@
+#ZoneCard {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    border-color: blueviolet;
+    border: 1px solid midnightblue;
+    margin: 1em;
+    padding: 1em;
+}
+
 /* .Card{
     display: flex;
     flex-direction: column;

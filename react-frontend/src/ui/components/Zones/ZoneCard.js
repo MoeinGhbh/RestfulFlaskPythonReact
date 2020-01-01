@@ -11,6 +11,7 @@ import axios from "axios";
 let Zoncardgroup;
 let ZoncarditemId;
 
+
 class ZoneCard extends Component {
     constructor(props) {
         super(props);
@@ -47,12 +48,11 @@ class ZoneCard extends Component {
         return (
             <div className="Card">
                 {items.map((item, index) => {
-                    //console.log("item.status ", Boolean(item.status.toString()));
 
                     Zoncardgroup = item.group
                     ZoncarditemId = item.itemId
 
-                    return (<div>
+                    return (<div id="ZoneCard">
                         <label>  {item.group} {item.itemName}   </label>
                         <Switch
                             name={index}

@@ -22,19 +22,13 @@ class ZoneCard extends Component {
 
 
     }
-
     updateState = (e) => {
         const {items, zoneIndex, zoneName, zoneId} = this.props;
         let itemsTemp = items;
         itemsTemp[parseInt(e.target.name)].status = e.target.checked;
         this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
-
-        // console.log(items)
-        // console.log('uart', zoneId, Zoncardgroup, ZoncarditemId, e.target.checked)
-        // def sendtoBoard(zoneId,type,status):
         let sendStatus
         e.target.checked == true ? sendStatus = 1 : sendStatus = 0
-
         axios.post('http://127.0.0.1:5000/api/v1.0/sentoboard?token=' + localStorage.getItem('LStoken')
             , ({
                 zoneId: zoneId,
@@ -55,22 +49,20 @@ class ZoneCard extends Component {
                     Zoncardgroup = item.group
                     ZoncarditemId = item.itemId
                     return (
-                        item.Aircondition != 1 ?
-                            <div>
+                        item.group != "Aircondition" ?
+                            <div id="divOth">
                                 {item.group == "Lamp" ? <img src={Lamp} alt="" className="imgIcon"/> : null}
                                 {item.group == "Socket" ? <img src={Socket} alt="" className="imgIcon"/> : null}
                                 {item.group == "Curtain" ? <img src={Curtain} alt="" className="imgIcon"/> : null}
-
                                 <label>  {item.group} {item.itemName} {item.speed} </label>
-
                                 <Switch name={index}
                                         checked={item.status.toString() == "true"}
                                         onChange={this.updateState}
                                         zoneId={zoneId}/>
                             </div>
                             :
-                            item.Aircondition == 1 ?
-                                <div id="divAiv">
+                            item.group == "Aircondition" ?
+                                <div id="divAir">
                                     {item.group == "Aircondition" ?
                                         <img src={Aircondition} alt="" className="imgIcon"/> : null}
                                     <label>  {item.group} {item.itemName} {item.speedType} </label>

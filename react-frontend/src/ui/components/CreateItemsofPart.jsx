@@ -14,7 +14,8 @@ class CreateItemsofPart extends Component {
             Zones: [],
             zoneId: '',
             group: '',
-            itemName: ''
+            itemName: '',
+            speedType: ''
         }
     }
 
@@ -58,12 +59,45 @@ class CreateItemsofPart extends Component {
                 if (blankFind == false) {
                     LastIndex = countofitems + 1
                 }
-                eachZone.items.push({
-                    group: group,
-                    itemId: LastIndex,
-                    itemName: itemName,
-                    status: true
-                })
+                if (group != "Aircondition") {
+                    eachZone.items.push({
+                        group: group,
+                        itemId: LastIndex,
+                        itemName: itemName,
+                        status: true
+                    })
+                } else if (group == "Aircondition") {
+                    eachZone.items.push({
+                        group: group,
+                        itemId: LastIndex,
+                        itemName: itemName,
+                        speedType: "On/Off",
+                        status: true
+                    })
+                    eachZone.items.push({
+                        group: group,
+                        itemId: LastIndex,
+                        itemName: itemName,
+                        speedType: "Slow",
+                        status: true
+                    })
+                    eachZone.items.push({
+                        group: group,
+                        itemId: LastIndex,
+                        itemName: itemName,
+                        speedType: "Normal",
+                        status: true
+                    })
+                    eachZone.items.push({
+                        group: group,
+                        itemId: LastIndex,
+                        itemName: itemName,
+                        speedType: "Fast",
+                        status: true
+                    })
+                }
+
+
                 axios.post('http://127.0.0.1:5000/api/v1.0/additems?token=' + localStorage.getItem('LStoken'),
                     {
                         'eachZone.items': eachZone.items,

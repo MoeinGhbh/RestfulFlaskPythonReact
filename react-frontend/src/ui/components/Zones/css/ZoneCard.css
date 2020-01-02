@@ -8,6 +8,26 @@
     padding: 1em;
 }
 
+#divAiv {
+    color: blue;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-color: black;
+    border: 2px solid midnightblue;
+    /*height: auto;*/
+    margin-bottom: 5px;
+    background-color: lightgrey;
+    /*width: 100%;*/
+}
+
+
+.imgIcon {
+    width: 50px;
+    height: 50px;
+}
+
 /* .Card{
     display: flex;
     flex-direction: column;

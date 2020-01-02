@@ -7,6 +7,10 @@ import Col from "react-bootstrap/Col";
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import Switch from '@material-ui/core/Switch';
 import axios from "axios";
+import Lamp from "../../img/Lamp.png"
+import Socket from "../../img/Socket.png"
+import Curtain from "../../img/Curtain.png"
+import Aircondition from "../../img/Aircondition.png"
 
 let Zoncardgroup;
 let ZoncarditemId;
@@ -48,19 +52,36 @@ class ZoneCard extends Component {
         return (
             <div className="Card">
                 {items.map((item, index) => {
-
                     Zoncardgroup = item.group
                     ZoncarditemId = item.itemId
+                    return (
+                        item.Aircondition != 1 ?
+                            <div>
+                                {item.group == "Lamp" ? <img src={Lamp} alt="" className="imgIcon"/> : null}
+                                {item.group == "Socket" ? <img src={Socket} alt="" className="imgIcon"/> : null}
+                                {item.group == "Curtain" ? <img src={Curtain} alt="" className="imgIcon"/> : null}
 
-                    return (<div id="ZoneCard">
-                        <label>  {item.group} {item.itemName}   </label>
-                        <Switch
-                            name={index}
-                            checked={item.status.toString() == "true"}
-                            onChange={this.updateState}
-                            zoneId={zoneId}
-                        />
-                    </div>)
+                                <label>  {item.group} {item.itemName} {item.speed} </label>
+
+                                <Switch name={index}
+                                        checked={item.status.toString() == "true"}
+                                        onChange={this.updateState}
+                                        zoneId={zoneId}/>
+                            </div>
+                            :
+                            item.Aircondition == 1 ?
+                                <div id="divAiv">
+                                    {item.group == "Aircondition" ?
+                                        <img src={Aircondition} alt="" className="imgIcon"/> : null}
+                                    <label>  {item.group} {item.itemName} {item.speedType} </label>
+                                    <Switch name={index}
+                                            checked={item.status.toString() == "true"}
+                                            onChange={this.updateState}
+                                            zoneId={zoneId}/>
+                                </div>
+                                :
+                                null
+                    )
                 })
                 }
             </div>

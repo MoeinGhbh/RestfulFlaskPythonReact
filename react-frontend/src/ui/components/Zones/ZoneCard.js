@@ -19,23 +19,77 @@ let ZoncarditemId;
 class ZoneCard extends Component {
     constructor(props) {
         super(props);
-
-
     }
+
     updateState = (e) => {
         const {items, zoneIndex, zoneName, zoneId} = this.props;
         let itemsTemp = items;
-        itemsTemp[parseInt(e.target.name)].status = e.target.checked;
-        this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+
+        if (e.target.value == "") {
+            itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+            this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+
+        } else if (e.target.value == "Slow") {
+            if (e.target.checked == true) {
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //normal
+                itemsTemp[parseInt((parseInt(e.target.name) + 1))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //fast
+                itemsTemp[parseInt((parseInt(e.target.name) + 2))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            } else {
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            }
+        } else if (e.target.value == "Normal") {
+            if (e.target.checked == true) {
+                //normal
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //slow
+                itemsTemp[parseInt((parseInt(e.target.name) - 1))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //fast
+                itemsTemp[parseInt((parseInt(e.target.name) + 1))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            } else {
+                //normal
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            }
+        } else if (e.target.value == "Fast") {
+            if (e.target.checked == true) {
+                //fast
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //normal
+                itemsTemp[parseInt((parseInt(e.target.name) - 1))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+                //slow
+                itemsTemp[parseInt((parseInt(e.target.name) - 2))].status = false;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            } else {
+                //fast
+                itemsTemp[parseInt(e.target.name)].status = e.target.checked;
+                this.props.handler(itemsTemp, zoneIndex, zoneName, zoneId)
+            }
+
+        }
+
+
+        // send data to hardware
         let sendStatus
         e.target.checked == true ? sendStatus = 1 : sendStatus = 0
         axios.post('http://127.0.0.1:5000/api/v1.0/sentoboard?token=' + localStorage.getItem('LStoken')
             , ({
-                zoneId: zoneId,
-                group: Zoncardgroup,
-                itemId: ZoncarditemId,
-                status: sendStatus
-            })
+                    zoneId: zoneId,
+                    group: Zoncardgroup,
+                    itemId: ZoncarditemId,
+                    status: sendStatus
+                }
+            )
         )
     }
 
@@ -54,11 +108,13 @@ class ZoneCard extends Component {
                                 {item.group == "Lamp" ? <img src={Lamp} alt="" className="imgIcon"/> : null}
                                 {item.group == "Socket" ? <img src={Socket} alt="" className="imgIcon"/> : null}
                                 {item.group == "Curtain" ? <img src={Curtain} alt="" className="imgIcon"/> : null}
-                                <label>  {item.group} {item.itemName} {item.speed} </label>
+                                <label>  {item.group} {item.itemName}  </label>
                                 <Switch name={index}
                                         checked={item.status.toString() == "true"}
                                         onChange={this.updateState}
-                                        zoneId={zoneId}/>
+                                        zoneId={zoneId}
+
+                                />
                             </div>
                             :
                             item.group == "Aircondition" ?
@@ -69,7 +125,9 @@ class ZoneCard extends Component {
                                     <Switch name={index}
                                             checked={item.status.toString() == "true"}
                                             onChange={this.updateState}
-                                            zoneId={zoneId}/>
+                                            zoneId={zoneId}
+                                            value={item.speedType}
+                                    />
                                 </div>
                                 :
                                 null

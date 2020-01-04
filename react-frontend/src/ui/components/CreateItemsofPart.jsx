@@ -43,57 +43,57 @@ class CreateItemsofPart extends Component {
                 let countofitems = eachZone.items.length
                 let blankFind = false
 
-                for (i; i < countofitems + 1; i++) {
-                    eachZone.items.map(ListItems => {
-                        if (i == ListItems.itemId) {
-                            find = true
-                        }
-                    })
-                    if (find == false) {
-                        LastIndex = i
-                        blankFind = true
-                    } else {
-                        find = false
-                    }
-                }
-                if (blankFind == false) {
-                    LastIndex = countofitems + 1
-                }
+
                 if (group != "Aircondition") {
+                    console.log('group != Aircondition', group);
+                    for (i; i < countofitems + 1; i++) {
+                        eachZone.items.map(ListItems => {
+                            if (i == ListItems.itemId) {
+                                find = true
+                            }
+                        })
+                        if (find == false) {
+                            LastIndex = i
+                            blankFind = true
+                            break
+                        } else {
+                            find = false
+                        }
+                    }
+                    if (blankFind == false) {
+                        LastIndex = countofitems + 1
+                    }
                     eachZone.items.push({
                         group: group,
                         itemId: LastIndex,
                         itemName: itemName,
-                        status: true
+                        status: false
                     })
-                } else if (group == "Aircondition") {
+                }
+
+
+                if (group == "Aircondition") {
+                    console.log('group == Aircondition', group);
                     eachZone.items.push({
                         group: group,
-                        itemId: LastIndex,
-                        itemName: itemName,
-                        speedType: "On/Off",
-                        status: true
-                    })
-                    eachZone.items.push({
-                        group: group,
-                        itemId: LastIndex,
+                        itemId: countofitems + 1,
                         itemName: itemName,
                         speedType: "Slow",
-                        status: true
+                        status: false
                     })
                     eachZone.items.push({
                         group: group,
-                        itemId: LastIndex,
+                        itemId: countofitems + 2,
                         itemName: itemName,
                         speedType: "Normal",
-                        status: true
+                        status: false
                     })
                     eachZone.items.push({
                         group: group,
-                        itemId: LastIndex,
+                        itemId: countofitems + 3,
                         itemName: itemName,
                         speedType: "Fast",
-                        status: true
+                        status: false
                     })
                 }
 

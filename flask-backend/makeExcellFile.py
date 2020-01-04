@@ -1,12 +1,7 @@
 import openpyxl
 
 
-# newitems = [{"group": "Lamp", "itemId": 2, "itemName": "\u0647\u0627\u0644\u0648\u0698\u0646", "status": True},
-#             {"group": "Socket", "itemId": 6, "itemName": "\u0631\u0627\u0633\u062a", "status": False}]
-
-
 class makeExcellFile():
-
     def makeFile(zoneId, zoneName, newitems):
 
         print(newitems)
@@ -16,11 +11,9 @@ class makeExcellFile():
         flag = False
         wb = openpyxl.load_workbook('List.xlsx')
         sheet = wb['List']
-
         for row in sheet.iter_rows():
             for cell in row:
-                if cell.value == None:
-
+                if cell.value is None:
                     sheet.cell(row=cell.row, column=2).value = zoneId
                     sheet.cell(row=cell.row, column=3).value = zoneName
 
@@ -49,4 +42,4 @@ class makeExcellFile():
                 break
             else:
                 continue
-        wb.save("List.xlsx")
+        wb.save('List.xlsx')

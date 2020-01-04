@@ -97,11 +97,13 @@ class CreateItemsofPart extends Component {
                     })
                 }
 
+                console.log('items: ',eachZone.items)
 
                 axios.post('http://127.0.0.1:5000/api/v1.0/additems?token=' + localStorage.getItem('LStoken'),
                     {
                         'eachZone.items': eachZone.items,
-                        'zoneId': zoneId
+                        'zoneId': zoneId,
+                        'zoneName':eachZone.zoneName
                     }
                 ).then(res => {
                     if (res.status == 200) {

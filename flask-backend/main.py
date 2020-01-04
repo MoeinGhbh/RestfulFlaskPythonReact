@@ -9,6 +9,7 @@ from functools import wraps
 import json
 from userModel import *
 from UART import *
+from makeExcellFile import *
 
 from tinydb.operations import delete
 
@@ -72,7 +73,7 @@ def deleterole():
     print(msm)
     if msm == 200:
         return jsonify("Role Added"), 200
-    else :
+    else:
         return jsonify("the role is used for users"), 500
 
 
@@ -240,6 +241,7 @@ def addIthems():
     request_data = request.get_json()
     zoneId = request_data["zoneId"]
     newitems = request_data["eachZone.items"]
+    zoneName = request_data["zoneName"]
     print(newitems)
     print(zoneId)
     data = TinyDB("data.json")
@@ -247,6 +249,8 @@ def addIthems():
     query = Query()
     try:
         data.update({"items": newitems}, query.zoneId == zoneId)
+        # add to excell for make index
+        makeExcellFile.makeFile(zoneId, zoneName, newitems)
         return "ok", 200
     except:
         return "not ok", 500
@@ -279,6 +283,7 @@ def adminChangePassword():
     newPassword = str(request_data["newPassword"])
     msg = User.adminChangePassword(newPassword)
     return msg
+
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -13,12 +13,6 @@ from makeExcellFile import *
 
 from tinydb.operations import delete
 
-# data = TinyDB("data.json")
-# table = data.table("Zone")
-# table.insert({"id": 1, "name": "TVRoom", "accessLevel": "Parent", "items": [{"id": 1, "group": "lamp",
-#                                                                              "name": "Halogen", "status": "true"}]})
-# table = table.all()
-
 CORS(app)
 
 app.config["SECRET_KEY"] = 'meow'

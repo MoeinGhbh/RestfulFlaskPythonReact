@@ -190,7 +190,7 @@ def addZone():
     data1 = data1.table("Zone")
     query = Query()
     # print((data1.search(query.zoneName)))
-    if data1.count(query.zoneName == newZone) > 0:
+    if data1.count(query.zoneName == newZone) > 0 or newZone == '' or role == '':
         return "the Zone is exist", 500
     else:
         counter = len(data1) + 1
@@ -219,11 +219,13 @@ def delZoneItem():
     request_data = request.get_json()
     zoneId = request_data["zoneId"]
     items = request_data["items"]
+    itemId = request_data["itemId"]
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()
     try:
         data.update({"items": items}, query.zoneId == zoneId)
+        makeExcellFile.findCellDelete(zoneId, itemId)
         return "ok", 200
     except:
         return "not ok", 500

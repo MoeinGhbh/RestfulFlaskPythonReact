@@ -33,7 +33,8 @@ class ZoneCardEdit extends Component {
         axios.post('http://127.0.0.1:5000/api/v1.0/delZoneItem?token=' + localStorage.getItem('LStoken'),
             {
                 'items': newitems,
-                'zoneId': this.state.zoneId
+                'zoneId': this.state.zoneId,
+                'itemId': itemId
             }
         ).then(res => {
                 // if (res.status == 200) {
@@ -58,7 +59,7 @@ class ZoneCardEdit extends Component {
                                     <table>
                                         <tr>
                                             <td>
-                                                <label>{Item.itemName}  {Item.group}</label>
+                                                <label>{Item.itemName} {Item.group}</label>
                                             </td>
                                             <td>
                                                 <Button

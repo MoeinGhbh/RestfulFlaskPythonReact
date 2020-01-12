@@ -51,18 +51,25 @@ Python, Flask, React.js, Sqlalchemy, Tinydb, GitHub, Raspberry PI, relays, axios
 
 so if you want to make project Manually should do instructure step by step 
 
+make two folder for frontend and backend 
 ## mkdir flask-backend
 ## mkdir react-frontend
+make slolution
 ### npm install -g yarn
 ### yarn global add create-react-app react-scripts
+install flask for restful API
 ### pip install flask
+make react solution
 ### npx create-react-app react-frontend
 
 ---
-Go to react-frontend foldes and run:
-
+Go to react-frontend folders and run:
+for make hybrid solution you should set webpack to python folders 
 ### npm run eject
 
+
+---
+# config the file to work webpack 
 Go to config - jest-- edit paths.js
 
 ### appBuild: resolveApp('build'), 
@@ -77,7 +84,7 @@ Edit line HtmlWebpackPlugin
 ### filename : "../../templates/index.html",
 
 Go to html.index
-for test result of hybrid
+for test result of hybrid solution you can call token from backend
   
 ### add   <script> window.token="{{token}}" </script>
 ### app.js <p> my token = {window.token} </p>

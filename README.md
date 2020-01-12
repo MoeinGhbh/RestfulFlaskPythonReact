@@ -89,6 +89,7 @@ Go to config - jest-- edit paths.js
 ### appBuild: resolveApp('../Flask-backend/static/react'),
 
 Go to webpack.config.js
+
 ### remove /static to null
 
 Edit line HtmlWebpackPlugin
@@ -96,7 +97,8 @@ Edit line HtmlWebpackPlugin
 ### filename : "../../templates/index.html",
 
 Go to html.index
-for test result of hybrid  
+for test result of hybrid
+  
 ### add   <script> window.token="{{token}}" </script>
 ### app.js <p> my token = {window.token} </p>
 ### package.json add : "homepage": "/static/react",
@@ -105,13 +107,13 @@ for test result of hybrid
 
 ---
 
-for run website should go to flask-backend and type:  
+for run website should go to flask-backend and type:
+  
 #python main.py
 
 ---
 
-for this project need to install some database and ORM <br />
-         as sqlalchemy tinydb 
+for this project need to install some database and ORM as sqlalchemy tinydb 
 ### pip install tinydb
 ### pip install flask_sqlalchemy
 

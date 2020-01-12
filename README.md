@@ -69,7 +69,7 @@ for make hybrid solution you should set webpack to python folders
 
 
 ---
-# config the file to work webpack 
+## config the files to work webpack 
 Go to config - jest-- edit paths.js
 
 ### appBuild: resolveApp('build'), 
@@ -86,10 +86,19 @@ Edit line HtmlWebpackPlugin
 Go to html.index
 for test result of hybrid solution you can call token from backend
   
-### add   <script> window.token="{{token}}" </script>
-### app.js <p> my token = {window.token} </p>
-### package.json add : "homepage": "/static/react",
+ add line to HTML
+### <script> window.token="{{token}}" </script>
+
+Edit app.js
+### <p> my token = {window.token} </p>
+
+package.json add 
+###  "homepage": "/static/react",
+
+add plugin-transform-react-jsx
 ### yarn add @babel/plugin-transform-react-jsx
+
+build Project 
 ### npm run build
 
 ---

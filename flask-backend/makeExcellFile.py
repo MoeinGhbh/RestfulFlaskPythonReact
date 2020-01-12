@@ -6,20 +6,46 @@ from xlrd import open_workbook
 class makeExcellFile():
 
     @staticmethod
+    def findCellDelete(zoneId, itemId):
+        flag = False
+        book = open_workbook('List.xlsx')
+        print(book.sheets())
+        for sheet in book.sheets():
+            print(sheet)
+            print(sheet.name)
+            print(range(sheet.nrows))
+            for rowidx in range(sheet.nrows):
+                print(rowidx)
+                row = sheet.row(rowidx)
+                for colidx, cell in enumerate(row):
+                    print(row)
+                    # HighAmper.cell(row=10, column=10).value = 'None'
+                    # LowAmper.cell(row=10, column=10).value = 'None'
+                    if sheet.cell(rowidx, 1).value == zoneId and sheet.cell(rowidx, 3).value == itemId:
+                        print('ssssssssss')
+                        for i in range(6):
+                            print(rowidx)
+                            print('sdfadfas')
+                            sheet.cell(row=rowidx, column=(i + 1)).value = None
+                            sheet.cell(row=rowidx, column=(i + 1)).value = 'None'
+                            sheet.cell(row=10, column=10).value = 'None'
+                        book.save('List.xlsx')
+                        flag = True
+                        break
+            if flag:
+                break
+            else:
+                continue
+
+    @staticmethod
     def findCell(mySheet, zoneName, itemId):
-        print(mySheet)
-        print(zoneName)
-        print(itemId)
         book = open_workbook('List.xlsx')
         for sheet in book.sheets():
             if sheet.name == mySheet:
-                print(sheet)
                 for rowidx in range(sheet.nrows):
                     zoneFlag = False
                     itemFlag = False
-                    print(rowidx)
                     row = sheet.row(rowidx)
-                    print(row)
                     for colidx, cell in enumerate(row):
                         if sheet.cell(rowidx, 2).value == zoneName and sheet.cell(rowidx, 3).value == itemId:
                             return False
@@ -27,11 +53,6 @@ class makeExcellFile():
 
     @staticmethod
     def makeFile(zoneId, zoneName, newitems):
-        print(newitems)
-        print(zoneName)
-        print(zoneId)
-        # main.update_status()
-
         wb = openpyxl.load_workbook('List.xlsx')
         HighAmper = wb['HighAmper']
         for item in newitems:
@@ -40,12 +61,8 @@ class makeExcellFile():
                         (item['speedType'] == 'Fast') or (item['speedType'] == 'Normal')):
                     flag = False
                     for row in HighAmper.iter_rows():
-                        print(row)
                         for cell in row:
-                            print(cell)
                             if cell.value == None:
-                                print(cell.value)
-                                print(cell.row)
                                 HighAmper.cell(row=cell.row, column=1).value = (cell.row - 1)
                                 HighAmper.cell(row=cell.row, column=2).value = zoneId
                                 HighAmper.cell(row=cell.row, column=3).value = zoneName
@@ -66,9 +83,8 @@ class makeExcellFile():
         LowAmper = wb['LowAmper']
         for item in newitems:
             if makeExcellFile.findCell('LowAmper', zoneName, item['itemId']):
-                if item['group'] != 'Aircondition' or ((item['group'] == 'Aircondition') and (item['speedType'] == 'Slow')):
-                    print(item)
-                    print("as hole 2")
+                if item['group'] != 'Aircondition' or (
+                        (item['group'] == 'Aircondition') and (item['speedType'] == 'Slow')):
                     flag = False
                     for row in LowAmper.iter_rows():
                         for cell in row:

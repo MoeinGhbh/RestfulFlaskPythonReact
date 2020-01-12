@@ -66,3 +66,57 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+Python and React Js Hybrid website Instructions
+
+## mkdir flask-backend
+## mkdir react-frontend
+### npm install -g yarn
+### yarn global add create-react-app react-scripts
+### pip install flask
+### npx create-react-app react-frontend
+
+Go to react-frontend foldes and run:
+
+### npm run eject
+
+Go to config - jest-- edit paths.js
+
+### appBuild: resolveApp('build'), 
+### appBuild: resolveApp('../Flask-backend/static/react'),
+
+Go to webpack.config.js
+### remove /static to null
+
+Edit line HtmlWebpackPlugin
+
+### filename : "../../templates/index.html",
+
+Go to html.index
+for test result of hybrid  
+### add   <script> window.token="{{token}}" </script>
+### app.js <p> my token = {window.token} </p>
+### package.json add : "homepage": "/static/react",
+### yarn add @babel/plugin-transform-react-jsx
+### npm run build
+
+for run website should go to flask-backend and type:  
+#python main.py
+
+for this project need to install some database and ORM <br />
+         as sqlalchemy tinydb 
+### pip install tinydb
+### pip install flask_sqlalchemy
+
+
+for used restful API should install 
+
+### pip install jwt
+### pip install pyjwt
+
+
+
+
+
+
+

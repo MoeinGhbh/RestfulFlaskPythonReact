@@ -34,6 +34,22 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
+-	Design and development of a whole API-based web application to make smart home that control equipment and devices at home by web application.
+-	To this project needs more knowledge about IOT (Internet of things) as Raspberry PI and use UART protocol (RS382- one of electronic transfer data protocol) to send message to device by send signal by Raspberry to relays.
+-	This application has ability to define zone and device and equipment dynami-cally.
+-	
+-	selection of Platform is strategy decision because the application must run on small electronic board and Python is strong and light platform for Raspber-ry PI board.
+-	Use case and user experience definition
+-	Agile software development and agile prototyping
+-	Platform and process tests
+-	Start beta-test rollout including continuously first customer feedbacks
+-	Reactjs is suitable platform for make dynamic presentation layer that work by axios to call API from backend
+
+To this project used tools, database, equipment ...:
+Python, Flask, React.js, Sqlalchemy, Tinydb, GitHub, Raspberry PI, relays, axios
+
+so if you want to make project Manually should do instructure step by step 
 
 ## mkdir flask-backend
 ## mkdir react-frontend

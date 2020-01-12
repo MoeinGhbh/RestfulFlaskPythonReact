@@ -67,6 +67,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
+---
+
 Python and React Js Hybrid website Instructions
 
 ## mkdir flask-backend
@@ -76,6 +78,7 @@ Python and React Js Hybrid website Instructions
 ### pip install flask
 ### npx create-react-app react-frontend
 
+---
 Go to react-frontend foldes and run:
 
 ### npm run eject
@@ -100,8 +103,12 @@ for test result of hybrid
 ### yarn add @babel/plugin-transform-react-jsx
 ### npm run build
 
+---
+
 for run website should go to flask-backend and type:  
 #python main.py
+
+---
 
 for this project need to install some database and ORM <br />
          as sqlalchemy tinydb 

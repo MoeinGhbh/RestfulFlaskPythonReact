@@ -81,37 +81,35 @@ If someone wants to make project step by step, should :
     remove /static to null
     filename : "../../templates/index.html",
 
-8- Go to html.index
-    For test result of hybrid solution you can call token from backend
-
 ---
 
-For test Connection:
-9- add line to HTML
+##### For test result of hybrid solution you can call token from backend:
+
+8- add line to HTML
 
     <script> window.token="{{token}}" </script>
 
-10- Edit app.js
+9- Edit app.js
 
     <p> my token = {window.token} </p>
 
 ---
 
-11- package.json add 
+10- package.json add 
 
     "homepage": "/static/react",
 
-12- add plugin-transform-react-jsx
+11- add plugin-transform-react-jsx
 
     yarn add @babel/plugin-transform-react-jsx
 
-13- build Project 
+12- build Project 
 
     npm run build
     
 ---
 
-14- for run website should go to flask-backend and type:
+13- for run website should go to flask-backend and type:
 
     python main.py
 

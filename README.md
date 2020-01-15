@@ -39,6 +39,7 @@ For export report should install :
 
 For run website should go to flask-backend and type:
 
+# RUN
     python main.py
  
 ---

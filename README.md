@@ -1,4 +1,4 @@
-# BMS Building Management System
+# BMS - Building Management System
 ### Building automation is the automatic centralized control of a building's heating, ventilation and air conditioning, lighting and other systems through a building management system or building automation system (BAS). The objectives of building automation are improved occupant comfort, efficient operation of building systems, reduction in energy consumption and operating costs, and improved life cycle of utilities. 
 
 About Project:
@@ -13,62 +13,62 @@ About Project:
 -	Start beta-test roll out including continuously first customer feedbacks
 -	React JS is suitable platform for make dynamic presentation layer that work by axios to call API from backend
 
-To this project used tools, database, equipment:
+In project use some tools, database, equipment:
 
-## Python, Flask, React.js, SQL Alchemy, Tinydb, axios,  
-## Source version control: GitHub 
-## Hardware/Equipment : Raspberry PI, Board and relays, RS232 convertor, MicroController
+    ## Python, Flask, React.js, SQL Alchemy, Tinydb, axios,  
+    ## Source version control: GitHub 
+    ## Hardware/Equipment : Raspberry PI, Board and relays, RS232 convertor, MicroController
 
 so if you want to make project Manually should do instructure step by step 
 ---
 For this project need to install some database and ORM as sqlalchemy tinydb for SQL and NO-SQL 
-### pip install tinydb
-### pip install flask_sqlalchemy
+    ### pip install tinydb
+    ### pip install flask_sqlalchemy
 
 
 For used restful API should install 
-### pip install jwt
-### pip install pyjwt
+    ### pip install jwt
+    ### pip install pyjwt
 
 For export report should install :
-###  pip install openpyxl
-### pip install xlrd
+    ###  pip install openpyxl
+    ### pip install xlrd
 
 For run website should go to flask-backend and type:
 
- # python main.py
+     # python main.py
  
 ---
 
-# If someone wants to make project step by step, should :
+    # If someone wants to make project step by step, should :
 
 1- make two folder for frontend and backend 
-## mkdir flask-backend
-## mkdir react-frontend
+    ## mkdir flask-backend
+    ## mkdir react-frontend
 
 2- make slolution
-### npm install -g yarn
-### yarn global add create-react-app react-scripts
+    ### npm install -g yarn
+    ### yarn global add create-react-app react-scripts
 install flask for restful API
-### pip install flask
+    ### pip install flask
 make react solution
-### npx create-react-app react-frontend
+    ### npx create-react-app react-frontend
 ---
 3- Go to react-frontend folders and run:
-for make hybrid solution you should set webpack to python folders 
-### npm run eject
+    for make hybrid solution you should set webpack to python folders 
+    ### npm run eject
 
 
 4- Go to config - jest-- edit paths.js
-## config the files to work webpack 
+    ## config the files to work webpack 
 
 5- Go to webpack.config.js
-### appBuild: resolveApp('build'), 
-### appBuild: resolveApp('../Flask-backend/static/react'),
+    ### appBuild: resolveApp('build'), 
+    ### appBuild: resolveApp('../Flask-backend/static/react'),
 
 6- Edit line HtmlWebpackPlugin
-### remove /static to null
-### filename : "../../templates/index.html",
+    ### remove /static to null
+    ### filename : "../../templates/index.html",
 
 7- Go to html.index
 For test result of hybrid solution you can call token from backend
@@ -77,25 +77,25 @@ For test result of hybrid solution you can call token from backend
 
 For test Connection:
 1- add line to HTML
-### <script> window.token="{{token}}" </script>
+    ### <script> window.token="{{token}}" </script>
 
 2- Edit app.js
-### <p> my token = {window.token} </p>
+    ### <p> my token = {window.token} </p>
 
 ---
 
 8- package.json add 
-###  "homepage": "/static/react",
+    ###  "homepage": "/static/react",
 
 9- add plugin-transform-react-jsx
-### yarn add @babel/plugin-transform-react-jsx
+    ### yarn add @babel/plugin-transform-react-jsx
 
 10- build Project 
-### npm run build
+    ### npm run build
 ---
 
 11- for run website should go to flask-backend and type:
-### python main.py
+    ### python main.py
 
 
 Moein Ghobbeh

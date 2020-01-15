@@ -56,74 +56,71 @@ If someone wants to make project step by step, should :
     npm install -g yarn
     yarn global add create-react-app react-scripts
     
-install flask for restful API
-
-    pip install flask
-    
-make react solution
+3- make react solution
 
     npx create-react-app react-frontend
     
 ---
 
-3- Go to react-frontend folders and run:
+4- Go to react-frontend folders and run:
     for make hybrid solution you should set webpack to python folders 
     
     npm run eject
     
-4- Go to config - jest-- edit paths.js
+5- Go to config - jest-- edit paths.js
 
     config the files to work webpack 
 
-5- Go to webpack.config.js
+6- Go to webpack.config.js
 
     appBuild: resolveApp('build'), 
     appBuild: resolveApp('../Flask-backend/static/react'),
 
-6- Edit line HtmlWebpackPlugin
+7- Edit line HtmlWebpackPlugin
 
     remove /static to null
     filename : "../../templates/index.html",
 
-7- Go to html.index
-For test result of hybrid solution you can call token from backend
+8- Go to html.index
+    For test result of hybrid solution you can call token from backend
 
 ---
 
 For test Connection:
-1- add line to HTML
+9- add line to HTML
 
     <script> window.token="{{token}}" </script>
 
-2- Edit app.js
+10- Edit app.js
 
     <p> my token = {window.token} </p>
 
 ---
 
-8- package.json add 
+11- package.json add 
 
     "homepage": "/static/react",
 
-9- add plugin-transform-react-jsx
+12- add plugin-transform-react-jsx
 
     yarn add @babel/plugin-transform-react-jsx
 
-10- build Project 
+13- build Project 
 
     npm run build
     
 ---
 
-11- for run website should go to flask-backend and type:
+14- for run website should go to flask-backend and type:
 
     python main.py
 
+---
 
-Moein Ghobbeh
-Moein.Ghobbeh@gmail.com
-Berlin, 
-+49 178 9391561
+    Moein Ghobbeh
+    Moein.Ghobbeh@gmail.com
+    Berlin, 
+    +49 178 9391561
 
 
 

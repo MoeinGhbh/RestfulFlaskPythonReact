@@ -40,6 +40,9 @@ For export report should install :
 For run website should go to flask-backend and type:
 
 # RUN
+
+Open command prompt and then Go to flask-backend folder and type:
+
     python main.py
  
 ---

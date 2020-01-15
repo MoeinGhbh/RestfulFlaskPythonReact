@@ -19,7 +19,6 @@ In project use some tools, database, equipment:
     Source version control: GitHub 
     Hardware/Equipment : Raspberry PI, Board and relays, RS232 convertor, MicroController
 
-so if you want to make project Manually should do instructure step by step
  
 ---
 
@@ -44,7 +43,7 @@ For run website should go to flask-backend and type:
  
 ---
 
-If someone wants to make project step by step, should :
+#### If you want to make project Manually, should do instructure step by step
 
 1- make two folder for frontend and backend
  

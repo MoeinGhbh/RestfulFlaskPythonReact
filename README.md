@@ -65,8 +65,8 @@ For run website should go to flask-backend and type:
 4- Go to react-frontend folders and run:
 
    ###### for make hybrid solution config react webpack to export website to python folders .
-   #### 1-  template folder
-   #### 2-  static folder 
+   ##### a-  template folder
+   ##### b-  static folder 
     
     npm run eject
     

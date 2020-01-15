@@ -25,7 +25,7 @@ so if you want to make project Manually should do instructure step by step
 
 For this project need to install some database and ORM as sqlalchemy tinydb for SQL and NO-SQL
  
-    ### pip install tinydb
+    pip install tinydb
     ### pip install flask_sqlalchemy
 
 For used restful API should install

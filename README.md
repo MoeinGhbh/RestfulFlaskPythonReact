@@ -19,18 +19,22 @@ In project use some tools, database, equipment:
     ## Source version control: GitHub 
     ## Hardware/Equipment : Raspberry PI, Board and relays, RS232 convertor, MicroController
 
-so if you want to make project Manually should do instructure step by step 
+so if you want to make project Manually should do instructure step by step
+ 
 ---
-For this project need to install some database and ORM as sqlalchemy tinydb for SQL and NO-SQL 
+
+For this project need to install some database and ORM as sqlalchemy tinydb for SQL and NO-SQL
+ 
     ### pip install tinydb
     ### pip install flask_sqlalchemy
 
-
-For used restful API should install 
+For used restful API should install
+ 
     ### pip install jwt
     ### pip install pyjwt
 
 For export report should install :
+
     ###  pip install openpyxl
     ### pip install xlrd
 
@@ -40,33 +44,42 @@ For run website should go to flask-backend and type:
  
 ---
 
-    # If someone wants to make project step by step, should :
+If someone wants to make project step by step, should :
 
-1- make two folder for frontend and backend 
+1- make two folder for frontend and backend
+ 
     ## mkdir flask-backend
     ## mkdir react-frontend
-
+    
 2- make slolution
+
     ### npm install -g yarn
     ### yarn global add create-react-app react-scripts
+    
 install flask for restful API
+
     ### pip install flask
+    
 make react solution
+
     ### npx create-react-app react-frontend
 ---
 3- Go to react-frontend folders and run:
     for make hybrid solution you should set webpack to python folders 
+    
     ### npm run eject
-
-
+    
 4- Go to config - jest-- edit paths.js
+
     ## config the files to work webpack 
 
 5- Go to webpack.config.js
+
     ### appBuild: resolveApp('build'), 
     ### appBuild: resolveApp('../Flask-backend/static/react'),
 
 6- Edit line HtmlWebpackPlugin
+
     ### remove /static to null
     ### filename : "../../templates/index.html",
 
@@ -77,24 +90,31 @@ For test result of hybrid solution you can call token from backend
 
 For test Connection:
 1- add line to HTML
+
     ### <script> window.token="{{token}}" </script>
 
 2- Edit app.js
+
     ### <p> my token = {window.token} </p>
 
 ---
 
 8- package.json add 
+
     ###  "homepage": "/static/react",
 
 9- add plugin-transform-react-jsx
+
     ### yarn add @babel/plugin-transform-react-jsx
 
 10- build Project 
+
     ### npm run build
+    
 ---
 
 11- for run website should go to flask-backend and type:
+
     ### python main.py
 
 

@@ -1,41 +1,42 @@
 import openpyxl
 from xlsxwriter.utility import xl_rowcol_to_cell
+
 from xlrd import open_workbook
 
 
 class makeExcellFile():
 
     @staticmethod
-    def findCellDelete(zoneId, itemId):
-        flag = False
-        book = open_workbook('List.xlsx')
-        print(book.sheets())
-        for sheet in book.sheets():
+    def findCellDelete(zoneName, itemId):
+        print(zoneName)
+        print(itemId)
+        book = openpyxl.load_workbook('List.xlsx')
+        for sheet in book:
+            print('my sheet')
             print(sheet)
-            print(sheet.name)
-            print(range(sheet.nrows))
-            for rowidx in range(sheet.nrows):
-                print(rowidx)
-                row = sheet.row(rowidx)
-                for colidx, cell in enumerate(row):
-                    print(row)
-                    # HighAmper.cell(row=10, column=10).value = 'None'
-                    # LowAmper.cell(row=10, column=10).value = 'None'
-                    if sheet.cell(rowidx, 1).value == zoneId and sheet.cell(rowidx, 3).value == itemId:
-                        print('ssssssssss')
-                        for i in range(6):
-                            print(rowidx)
-                            print('sdfadfas')
-                            sheet.cell(row=rowidx, column=(i + 1)).value = None
-                            sheet.cell(row=rowidx, column=(i + 1)).value = 'None'
-                            sheet.cell(row=10, column=10).value = 'None'
-                        book.save('List.xlsx')
-                        flag = True
-                        break
-            if flag:
-                break
-            else:
-                continue
+            for row in sheet.iter_rows():
+                print('my row')
+                print(row)
+                flag = False
+                for cell in row:
+                    # if cell.value == -1:
+                    #     break
+                    if cell.value != None:
+                        if sheet.cell(cell.row, 3).value == zoneName and sheet.cell(cell.row, 4).value == itemId:
+                            sheet.cell(row=cell.row, column=1).value = None
+                            sheet.cell(row=cell.row, column=2).value = None
+                            sheet.cell(row=cell.row, column=3).value = None
+                            sheet.cell(row=cell.row, column=4).value = None
+                            sheet.cell(row=cell.row, column=5).value = None
+                            sheet.cell(row=cell.row, column=6).value = None
+                            sheet.cell(row=cell.row, column=7).value = None
+                            book.save('List.xlsx')
+                    #         flag = True
+                    # if flag:
+                    #     break
+                    # else:
+                    #     continue
+        return flag
 
     @staticmethod
     def findCell(mySheet, zoneName, itemId):
@@ -43,10 +44,8 @@ class makeExcellFile():
         for sheet in book.sheets():
             if sheet.name == mySheet:
                 for rowidx in range(sheet.nrows):
-                    zoneFlag = False
-                    itemFlag = False
                     row = sheet.row(rowidx)
-                    for colidx, cell in enumerate(row):
+                    for cell in enumerate(row):
                         if sheet.cell(rowidx, 2).value == zoneName and sheet.cell(rowidx, 3).value == itemId:
                             return False
         return True

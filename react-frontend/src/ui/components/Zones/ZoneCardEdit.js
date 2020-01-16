@@ -16,7 +16,7 @@ class ZoneCardEdit extends Component {
     }
 
     deleteItems = (itemId) => {
-        let {items, zoneId} = this.state;
+        let {items, zoneId, zoneName} = this.state;
 
         let i = 0
         for (i; i < items.length; i++) {
@@ -34,7 +34,8 @@ class ZoneCardEdit extends Component {
             {
                 'items': newitems,
                 'zoneId': this.state.zoneId,
-                'itemId': itemId
+                'itemId': itemId,
+                'zoneName':zoneName
             }
         ).then(res => {
                 // if (res.status == 200) {

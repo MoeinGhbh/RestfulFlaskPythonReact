@@ -220,12 +220,13 @@ def delZoneItem():
     zoneId = request_data["zoneId"]
     items = request_data["items"]
     itemId = request_data["itemId"]
+    zoneName = request_data["zoneName"]
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()
     try:
         data.update({"items": items}, query.zoneId == zoneId)
-        makeExcellFile.findCellDelete(zoneId, itemId)
+        makeExcellFile.findCellDelete(zoneName, itemId)
         return "ok", 200
     except:
         return "not ok", 500
@@ -238,8 +239,8 @@ def addIthems():
     zoneId = request_data["zoneId"]
     newitems = request_data["eachZone.items"]
     zoneName = request_data["zoneName"]
-    print(newitems)
-    print(zoneId)
+    # print(newitems)
+    # print(zoneId)
     data = TinyDB("data.json")
     data = data.table("Zone")
     query = Query()

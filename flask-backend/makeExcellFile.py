@@ -1,22 +1,16 @@
 import openpyxl
-from xlsxwriter.utility import xl_rowcol_to_cell
-
 from xlrd import open_workbook
+from xlsxwriter.utility import xl_rowcol_to_cell
+from JsonUpdate import *
 
 
 class makeExcellFile():
 
     @staticmethod
     def findCellDelete(zoneName, itemId):
-        print(zoneName)
-        print(itemId)
         book = openpyxl.load_workbook('List.xlsx')
         for sheet in book:
-            print('my sheet')
-            print(sheet)
             for row in sheet.iter_rows():
-                print('my row')
-                print(row)
                 flag = False
                 for cell in row:
                     # if cell.value == -1:
@@ -36,7 +30,6 @@ class makeExcellFile():
                     #     break
                     # else:
                     #     continue
-        return flag
 
     @staticmethod
     def findCell(mySheet, zoneName, itemId):
@@ -69,6 +62,7 @@ class makeExcellFile():
                                 HighAmper.cell(row=cell.row, column=5).value = item['itemName']
                                 HighAmper.cell(row=cell.row, column=6).value = item['group']
                                 HighAmper.cell(row=cell.row, column=7).value = item['speedType']
+                                JsonUpdate.UpdateStaticCode(zoneId, item['itemId'], (cell.row - 1))
                                 flag = True
                                 break
                         if flag:
@@ -76,7 +70,6 @@ class makeExcellFile():
                         else:
                             continue
             wb.save('List.xlsx')
-            # wb.close()
 
         wb = openpyxl.load_workbook('List.xlsx')
         LowAmper = wb['LowAmper']
@@ -87,8 +80,8 @@ class makeExcellFile():
                     flag = False
                     for row in LowAmper.iter_rows():
                         for cell in row:
-                            if cell.value == None:
-                                LowAmper.cell(row=cell.row, column=1).value = (cell.row - 1)
+                            if cell.value == None and cell.row > 17:
+                                LowAmper.cell(row=cell.row, column=1).value = (cell.row - 1) + 17
                                 LowAmper.cell(row=cell.row, column=2).value = zoneId
                                 LowAmper.cell(row=cell.row, column=3).value = zoneName
                                 LowAmper.cell(row=cell.row, column=4).value = item['itemId']
@@ -98,6 +91,7 @@ class makeExcellFile():
                                     LowAmper.cell(row=cell.row, column=7).value = item['speedType']
                                 else:
                                     LowAmper.cell(row=cell.row, column=7).value = 'null'
+                                JsonUpdate.UpdateStaticCode(zoneId, item['itemId'], (cell.row - 1))
                                 flag = True
                                 break
                         if flag:
@@ -105,4 +99,3 @@ class makeExcellFile():
                         else:
                             continue
             wb.save('List.xlsx')
-            # wb.close()

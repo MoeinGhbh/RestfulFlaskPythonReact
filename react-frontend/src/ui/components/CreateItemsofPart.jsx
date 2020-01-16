@@ -67,7 +67,8 @@ class CreateItemsofPart extends Component {
                         group: group,
                         itemId: LastIndex,
                         itemName: itemName,
-                        status: false
+                        status: false,
+                        code:0
                     })
                 }
 
@@ -79,21 +80,24 @@ class CreateItemsofPart extends Component {
                         itemId: countofitems + 1,
                         itemName: itemName,
                         speedType: "Slow",
-                        status: false
+                        status: false,
+                        code:0
                     })
                     eachZone.items.push({
                         group: group,
                         itemId: countofitems + 2,
                         itemName: itemName,
                         speedType: "Normal",
-                        status: false
+                        status: false,
+                        code:0
                     })
                     eachZone.items.push({
                         group: group,
                         itemId: countofitems + 3,
                         itemName: itemName,
                         speedType: "Fast",
-                        status: false
+                        status: false,
+                        code:0
                     })
                 }
 

@@ -1,1 +1,109 @@
-{"Zone": {"1": {"zoneId": 1, "zoneName": "TV Room", "accessLevel": ["admin"], "items": [{"group": "Lamp", "itemId": 1, "itemName": "ab", "status": false}, {"group": "Lamp", "itemId": 2, "itemName": "bg", "status": false}, {"group": "Socket", "itemId": 3, "itemName": "ss", "status": false}, {"group": "Curtain", "itemId": 4, "itemName": "right", "status": false}, {"group": "Curtain", "itemId": 5, "itemName": "left", "status": false}, {"group": "Aircondition", "itemId": 6, "itemName": "aaaaaa", "speedType": "Slow", "status": false}, {"group": "Aircondition", "itemId": 7, "itemName": "aaaaaa", "speedType": "Normal", "status": false}, {"group": "Aircondition", "itemId": 8, "itemName": "aaaaaa", "speedType": "Fast", "status": false}, {"group": "Lamp", "itemId": 9, "itemName": "oooooooooo", "status": false}, {"group": "Aircondition", "itemId": 10, "itemName": "yyyyy", "speedType": "Slow", "status": false}, {"group": "Aircondition", "itemId": 11, "itemName": "yyyyy", "speedType": "Normal", "status": false}, {"group": "Aircondition", "itemId": 12, "itemName": "yyyyy", "speedType": "Fast", "status": false}]}, "2": {"zoneId": 2, "zoneName": "Kitchen", "accessLevel": ["admin"], "items": [{"group": "Lamp", "itemId": 1, "itemName": "qqqq", "status": false}, {"group": "Socket", "itemId": 2, "itemName": "wwww", "status": false}, {"group": "Curtain", "itemId": 3, "itemName": "eeeee", "status": false}, {"group": "Aircondition", "itemId": 4, "itemName": "tttt", "speedType": "Slow", "status": false}, {"group": "Aircondition", "itemId": 5, "itemName": "tttt", "speedType": "Normal", "status": false}, {"group": "Aircondition", "itemId": 6, "itemName": "tttt", "speedType": "Fast", "status": false}]}, "3": {"zoneId": 3, "zoneName": "Master Room", "accessLevel": [], "items": []}, "4": {"zoneId": 4, "zoneName": "Room", "accessLevel": [], "items": []}, "5": {"zoneId": 5, "zoneName": "Bath", "accessLevel": ["admin"], "items": []}, "6": {"zoneId": 6, "zoneName": "Garden", "accessLevel": [], "items": []}, "7": {"zoneId": 7, "zoneName": "Parking", "accessLevel": ["admin"], "items": []}, "8": {"zoneId": 8, "zoneName": "Labi", "accessLevel": ["admin"], "items": []}}, "_default": {}}
+{
+  "Zone": {
+    "1": {
+      "zoneId": 1,
+      "zoneName": "TV Room",
+      "accessLevel": [
+        "admin"
+      ],
+      "items": [
+        {
+          "code": 17,
+          "group": "Lamp",
+          "itemId": 1,
+          "itemName": "iugyop",
+          "status": false
+        },
+        {
+          "code": 18,
+          "group": "Socket",
+          "itemId": 2,
+          "itemName": "iugyop",
+          "status": false
+        },
+        {
+          "code": 19,
+          "group": "Curtain",
+          "itemId": 3,
+          "itemName": "iugyop",
+          "status": false
+        },
+        {
+          "group": "Aircondition",
+          "itemId": 4,
+          "itemName": "iugyop",
+          "speedType": "Slow",
+          "status": false,
+          "code": 20
+        },
+        {
+          "group": "Aircondition",
+          "itemId": 5,
+          "itemName": "iugyop",
+          "speedType": "Normal",
+          "status": false,
+          "code": 1
+        },
+        {
+          "group": "Aircondition",
+          "itemId": 6,
+          "itemName": "iugyop",
+          "speedType": "Fast",
+          "status": false,
+          "code": 2
+        }
+      ]
+    },
+    "2": {
+      "zoneId": 2,
+      "zoneName": "Kitchen",
+      "accessLevel": [
+        "admin"
+      ],
+      "items": []
+    },
+    "3": {
+      "zoneId": 3,
+      "zoneName": "Master Room",
+      "accessLevel": [],
+      "items": []
+    },
+    "4": {
+      "zoneId": 4,
+      "zoneName": "Room",
+      "accessLevel": [],
+      "items": []
+    },
+    "5": {
+      "zoneId": 5,
+      "zoneName": "Bath",
+      "accessLevel": [
+        "admin"
+      ],
+      "items": []
+    },
+    "6": {
+      "zoneId": 6,
+      "zoneName": "Garden",
+      "accessLevel": [],
+      "items": []
+    },
+    "7": {
+      "zoneId": 7,
+      "zoneName": "Parking",
+      "accessLevel": [
+        "admin"
+      ],
+      "items": []
+    },
+    "8": {
+      "zoneId": 8,
+      "zoneName": "Labi",
+      "accessLevel": [
+        "admin"
+      ],
+      "items": []
+    }
+  },
+  "_default": {}
+}

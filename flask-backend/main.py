@@ -172,11 +172,12 @@ def sentoboard():
     group = request_data["group"]
     itemId = request_data["itemId"]
     status = request_data["status"]
+    Code = request_data["Code"]
     print(zoneId)
     print(group)
     print(itemId)
     print(status)
-    UART.sendtoBoard(zoneId, group, itemId, status)
+    UART.sendtoBoard(zoneId, group, itemId, status,Code)
     return jsonify({"data": "ok"})
 
 

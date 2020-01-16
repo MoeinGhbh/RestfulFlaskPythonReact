@@ -14,6 +14,7 @@ import Aircondition from "../../img/Aircondition.png"
 
 let Zoncardgroup;
 let ZoncarditemId;
+let Code;
 
 
 class ZoneCard extends Component {
@@ -84,7 +85,7 @@ class ZoneCard extends Component {
         e.target.checked == true ? sendStatus = 1 : sendStatus = 0
         axios.post('http://127.0.0.1:5000/api/v1.0/sentoboard?token=' + localStorage.getItem('LStoken')
             , ({
-                    zoneId: zoneId,
+                    Code: Code,
                     group: Zoncardgroup,
                     itemId: ZoncarditemId,
                     status: sendStatus
@@ -102,6 +103,7 @@ class ZoneCard extends Component {
                 {items.map((item, index) => {
                     Zoncardgroup = item.group
                     ZoncarditemId = item.itemId
+                    Code = item.code
                     return (
                         item.group != "Aircondition" ?
                             <div id="divOth">

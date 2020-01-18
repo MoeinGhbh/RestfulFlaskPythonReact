@@ -81,7 +81,8 @@ class makeExcellFile():
                     for row in LowAmper.iter_rows():
                         for cell in row:
                             if cell.value == None and cell.row > 17:
-                                LowAmper.cell(row=cell.row, column=1).value = (cell.row - 1) + 17
+                            # assert cell.value is None and cell.row > 17:
+                                LowAmper.cell(row=cell.row, column=1).value = (cell.row)
                                 LowAmper.cell(row=cell.row, column=2).value = zoneId
                                 LowAmper.cell(row=cell.row, column=3).value = zoneName
                                 LowAmper.cell(row=cell.row, column=4).value = item['itemId']
@@ -91,7 +92,7 @@ class makeExcellFile():
                                     LowAmper.cell(row=cell.row, column=7).value = item['speedType']
                                 else:
                                     LowAmper.cell(row=cell.row, column=7).value = 'null'
-                                JsonUpdate.UpdateStaticCode(zoneId, item['itemId'], (cell.row - 1))
+                                JsonUpdate.UpdateStaticCode(zoneId, item['itemId'], (cell.row))
                                 flag = True
                                 break
                         if flag:

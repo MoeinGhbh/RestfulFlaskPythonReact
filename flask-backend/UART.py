@@ -1,17 +1,21 @@
 import serial
 
-port = serial.Serial(
-    port='/dev/ttyAMA0',
-    baudrate=9600,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_ONE,
-    bytesize=serial.EIGHTBITS,
-    timeout=1)
+
+# port = serial.Serial(
+#     port='/dev/ttyAMA0',
+#     baudrate=9600,
+#     parity=serial.PARITY_NONE,
+#     stopbits=serial.STOPBITS_ONE,
+#     bytesize=serial.EIGHTBITS,
+#     timeout=1)
 
 
-class UART(port):
-    def sendtoBoard(zoneId, group, itemId, status, Code):
-        print(str(zoneId) + group + str(itemId) + str(status) + str(Code))
+# class UART(port):
+class UART():
+    # def sendtoBoard(zoneId, group, itemId, status, Code):
+    def sendtoBoard(status, Code):
+        # print(str(zoneId) + group + str(itemId) + str(status) + str(Code))
+        print("on-off: " + str(status) + "number of item: " + str(Code))
 
         # status  1   on
         # status  0   off
@@ -31,7 +35,9 @@ class UART(port):
         # now this signal ready to send on RS232(UART Protocol)
 
         bin(Code)
-        bin(status)
+        print(bin(Code))
+        print(bin(status))
         Signal = Code << 1 | status
+        print(Signal)
 
-        port.write(Signal)
+        # port.write(Signal)

@@ -168,16 +168,17 @@ def update_status():
 # @token_required
 def sentoboard():
     request_data = request.get_json()
-    zoneId = request_data["zoneId"]
-    group = request_data["group"]
-    itemId = request_data["itemId"]
+    # zoneId = request_data["zoneId"]
+    # group = request_data["group"]
+    # itemId = request_data["itemId"]
     status = request_data["status"]
-    Code = request_data["Code"]
-    print(zoneId)
-    print(group)
-    print(itemId)
-    print(status)
-    UART.sendtoBoard(zoneId, group, itemId, status,Code)
+    code = request_data["code"]
+    # print(zoneId)
+    # print(group)
+    # print(itemId)
+    # print(status)
+    # UART.sendtoBoard(zoneId, group, itemId, status,code)
+    UART.sendtoBoard(status, code)
     return jsonify({"data": "ok"})
 
 

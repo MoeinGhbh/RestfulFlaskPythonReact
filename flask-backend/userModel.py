@@ -107,23 +107,25 @@ class User(db.Model):
             return 500
 
     def deleteUser(_username):
-        if User.query.filter_by(username=_username).count() > 0:
-            try:
-                User.query.filter_by(username=_username).delete()
-                db.session.commit()
-                return 200
-            except:
-                return 500
-        else:
+        # if User.query.filter_by(username=_username).count() == 0:
+        try:
+            User.query.filter_by(username=_username).delete()
+            db.session.commit()
+            return 200
+        except:
             return 500
+        # else:
+        #     return 500
 
-    def GetAllUsers():
+    def GetAllUsers(self):
         return [User.json(user) for user in User.query.all()]
 
     def getRole(_username):
         user = User.query.filter_by(username=_username).first()
         if user is not None:
             return user.role.role
+        else:
+            return None
 
     # def getAllRole():
     #     user = User.query.all(db.column[3])

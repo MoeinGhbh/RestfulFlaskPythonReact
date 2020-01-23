@@ -1,0 +1,6 @@
+flask
+tinydb
+flask_sqlalchemy
+pyjwt
+openpyxl
+xlrd

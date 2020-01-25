@@ -11,9 +11,9 @@ from userModel import *
 from UART import *
 from makeExcellFile import *
 
-from tinydb.operations import delete
 
-CORS(app)
+
+# CORS(app)
 
 app.config["SECRET_KEY"] = 'meow'
 
@@ -26,7 +26,7 @@ def get_token():
     match = User.username_password_match(username, password)
     if match:
         expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=300)
-        token: object = jwt.encode({"exp": expiration_date}, app.config["SECRET_KEY"], algorithm="HS256")
+        token = jwt.encode({"exp": expiration_date}, app.config["SECRET_KEY"], algorithm="HS256")
         return token
     else:
         return Response('', 401, mimetype='applicatio/json')
@@ -94,9 +94,7 @@ def deleteUser():
     # if msm == 200:
     return jsonify({"data": User.deleteUser(username)})
     # else:
-
-
-#     return jsonify({"data": "delete User failed"}), 500
+    #     return jsonify({"data": "delete User failed"}), 500
 
 
 @app.route("/api/v1.0/getallusers", methods=["GET", "POST"])
@@ -104,10 +102,8 @@ def deleteUser():
 def getallusers():
     # try:
     return jsonify({"data": User.GetAllUsers()}), 200
-
-
-# except:
-#     return jsonify({"response": "delete User failed"}), 500
+    # except:
+    #     return jsonify({"response": "delete User failed"}), 500
 
 
 @app.route("/api/v1.0/GetAllroles", methods=["GET", "POST"])
@@ -173,10 +169,6 @@ def sentoboard():
     # itemId = request_data["itemId"]
     status = request_data["status"]
     code = request_data["code"]
-    # print(zoneId)
-    # print(group)
-    # print(itemId)
-    # print(status)
     # UART.sendtoBoard(zoneId, group, itemId, status,code)
     UART.sendtoBoard(status, code)
     return jsonify({"data": "ok"})
@@ -191,7 +183,6 @@ def addZone():
     data1 = TinyDB("data.json")
     data1 = data1.table("Zone")
     query = Query()
-    # print((data1.search(query.zoneName)))
     if data1.count(query.zoneName == newZone) > 0 or newZone == '' or role == '':
         return "the Zone is exist", 500
     else:
@@ -296,6 +287,7 @@ if __name__ == '__main__':
 #         SERVER_NAME='localhost:5000',
 #         APPLICATION_ROOT='/',
 #     )
+
 
 # netstat -tulpn
 # kill 9

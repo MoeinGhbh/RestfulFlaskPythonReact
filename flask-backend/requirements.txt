@@ -1,6 +1,10 @@
+flask_cors
+pyjwt
 flask
 tinydb
 flask_sqlalchemy
-pyjwt
 openpyxl
 xlrd
+serial
+pyserial
+xlsxwriter

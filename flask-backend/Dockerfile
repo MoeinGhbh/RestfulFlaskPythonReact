@@ -11,8 +11,8 @@ COPY . .
 
 EXPOSE 5000
 
-CMD python main.py
-# CMD ["python3","main.py","--host","0.0.0.0"]
+# CMD python3 main.py
+CMD ["python3","main.py","--host","0.0.0.0"]
 # CMD ["python3","main.py","runserver"]
 # CMD ["python", "main.py"]
 
